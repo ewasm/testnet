@@ -8,3 +8,7 @@ The `eth`, `ethvm` and `testeth` contain options to run them with [Hera eWASM VM
 
 - `--vm hera` enables Hera only,
 - `--vm heraplus` enables Hera with a fallback to EVM 1.0 Interpreter when EVM bytecode is detected. 
+
+## Tests
+
+Track the progress of EEI test implementation [here](https://github.com/ethereum/tests/pull/394)
