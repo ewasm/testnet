@@ -9,6 +9,14 @@ The `eth`, `ethvm` and `testeth` contain options to run them with [Hera eWASM VM
 - `--vm hera` enables Hera only,
 - `--vm heraplus` enables Hera with a fallback to EVM 1.0 Interpreter when EVM bytecode is detected.
 
+### Test net differences from main net
+
+Supports executing EVM 1.0 (Byzantium) **and** eWASM bytecode. The chain id is set to 0x42 (66).
+
+There are two differences:
+- code size limit introduced by Spurious Dragon has been lifted and there is no upper limit
+- zero bytes in contract bytecode are not subsidised anymore during deployment (they cost the same as non-zero bytes)
+
 ### Run eth node
 
 The config is in [ewasm-testnet-cpp-config.json](ewasm-testnet-cpp-config.json).
