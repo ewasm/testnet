@@ -3,7 +3,7 @@
 ;;
 
 (module
-  (import "ethereum" "callDataSize" (func $callDataSize (result i32)))
+  (import "ethereum" "getCallDataSize" (func $callDataSize (result i32)))
   (import "ethereum" "callDataCopy" (func $callDataCopy (param i32 i32 i32)))
   (import "ethereum" "return" (func $return (param i32 i32)))
   (func $main (export "main")
