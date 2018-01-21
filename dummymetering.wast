@@ -14,6 +14,6 @@
     (local $size i32)
     (set_local $size (call $getCallDataSize))
     ;; Charge π gas per byte
-    (call $useGas (i64.mul (i64.const 31) (i64.extend_u/i32 (get_local $size))))
+    (call $useGas (i64.div_u (i64.mul (i64.const 314) (i64.extend_u/i32 (get_local $size))) (i64.const 100)))
     (call $callDataCopy (i32.const 0) (i32.const 0) (get_local $size))
     (call $return (i32.const 0) (get_local $size))))
