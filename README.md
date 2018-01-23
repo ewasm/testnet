@@ -7,7 +7,7 @@ To build cpp-ethereum with the recent eWASM changes use [ewasm-sprint](https://g
 The `eth`, `ethvm` and `testeth` contain options to run them with [Hera eWASM VM](https://github.com/ewasm/hera):
 
 - `--vm hera` enables Hera only,
-- `--vm heraplus` enables Hera with a fallback to EVM 1.0 Interpreter when EVM bytecode is detected.
+- `--evmc fallback=true` enables fallback to EVM 1.0 Interpreter when EVM bytecode is detected.
 
 ### Test net differences from main net
 
@@ -25,7 +25,8 @@ Example node with mining on single CPU core, with no bootstrap:
 
 ```sh
 eth \
---vm heraplus \
+--vm hera \
+--evmc fallback=true \
 -d /tmp/ewasm-node/4201 \
 --listen 4201 \
 --no-bootstrap \
