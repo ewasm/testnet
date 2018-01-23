@@ -2,7 +2,7 @@
 
 ## cpp-ethereum
 
-To build cpp-ethereum with the recent eWASM changes use [ewasm-sprint](https://github.com/ethereum/cpp-ethereum/tree/ewasm-sprint).
+To build cpp-ethereum with the recent eWASM changes use [ewasm](https://github.com/ethereum/cpp-ethereum/tree/ewasm).
 
 The `eth`, `ethvm` and `testeth` contain options to run them with [Hera eWASM VM](https://github.com/ewasm/hera):
 
