@@ -7,48 +7,23 @@
 # This image is based on
 # https://github.com/ethereum/cpp-ethereum/blob/ccac1dd777c5b25de1c0bacc72dbecb6b376689e/scripts/docker/eth-alpine/Dockerfile
 
-FROM alpine
+FROM ethereum/cpp-build-env
+
+USER root
 
 # Make sure bash, bc and jq is available for easier wrapper implementation
-RUN apk add --no-cache \
-        bash jq bc \
-        python3 \
-        libstdc++ \
-        gmp \
-        libcurl \
-        libmicrohttpd \
-        leveldb --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
-    && apk add --no-cache --virtual .build-deps \
-        git \
-        cmake \
-        g++ \
-        make \
-        linux-headers curl-dev libmicrohttpd-dev \
-        leveldb-dev --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
-    && sed -i -E -e 's|#warning|//#warning|' /usr/include/sys/poll.h \
-    && git clone --recursive https://github.com/ethereum/cpp-ethereum --branch ewasm --single-branch --depth 1 \
-    && cd cpp-ethereum && echo "{}"                                               \
-            | jq ".+ {\"repo\":\"$(git config --get remote.origin.url)\"}" \
-            | jq ".+ {\"branch\":\"$(git rev-parse --abbrev-ref HEAD)\"}"  \
-            | jq ".+ {\"commit\":\"$(git rev-parse HEAD)\"}"               \
-            > /version.json                                             \
-    && pwd \
-    && cp scripts/jsonrpcproxy.py / \
-    && mkdir /build && cd /build \
-    && cmake /cpp-ethereum -DHERA=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo -DTOOLS=Off -DTESTS=Off \
-    && make eth \
-    && make install \
-    && cd / && rm /build -rf \
-    && rm /cpp-ethereum -rf \
-    && apk del .build-deps \
-    && rm /var/cache/apk/* -f
+RUN URL=https://github.com/ethereum/cpp-ethereum/releases/download/v1.4.0.dev0/cpp-ethereum-1.4.0.dev0-linux.tar.gz && curl -L $URL | tar xz -C /usr/local \
+    && curl https://raw.githubusercontent.com/ethereum/cpp-ethereum/develop/scripts/jsonrpcproxy.py > /jsonrpcproxy.py
 
-# See https://github.com/ethereum/cpp-ethereum/issues/3300
-# Using more than j4 can cause failures randomly
-
-# ADD config.json /config.json
+RUN git clone https://github.com/ewasm/hera && \
+		cd hera && \
+		git submodule update --init --recursive && \
+		cmake -DBUILD_SHARED_LIBS=ON . && \
+		make -j8 && \
+    cp src/libhera.so /
 
 ADD ewasm-testnet-cpp-config.json /ewasm-testnet-cpp-config.json
+
 ADD cpp-eth.sh /cpp-eth.sh
 
 # Export the usual networking ports to allow outside access to the node
