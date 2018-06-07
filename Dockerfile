@@ -25,6 +25,7 @@ RUN git clone https://github.com/ewasm/hera && \
 ADD ewasm-testnet-cpp-config.json /ewasm-testnet-cpp-config.json
 
 ADD cpp-eth.sh /cpp-eth.sh
+ADD enodes /enodes
 
 # Export the usual networking ports to allow outside access to the node
 EXPOSE 8545 30303
