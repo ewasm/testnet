@@ -52,4 +52,4 @@ eth \
 
 
 echo "running jsonrpcproxy..."
-python3 /jsonrpcproxy.py /tmp/ewasm-node/4201/geth.ipc
+python3 /jsonrpcproxy.py /tmp/ewasm-node/4201/geth.ipc http://0.0.0.0:8545
