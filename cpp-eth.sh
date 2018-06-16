@@ -33,7 +33,7 @@ echo $PEER_SET
 echo "running eth..."
 
 
-ethCmd=(eth)
+ethCmd=(aleth)
 
 ethCmd+=(--vm /libhera.so)
 ethCmd+=(--evmc fallback=true)

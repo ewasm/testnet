@@ -12,7 +12,7 @@ FROM ethereum/cpp-build-env
 USER root
 
 # Make sure bash, bc and jq is available for easier wrapper implementation
-RUN URL=https://github.com/ethereum/cpp-ethereum/releases/download/v1.4.0.dev0/cpp-ethereum-1.4.0.dev0-linux.tar.gz && curl -L $URL | tar xz -C /usr/local \
+RUN URL=https://github.com/ethereum/cpp-ethereum/releases/download/v1.4.0.dev1/cpp-ethereum-1.4.0.dev1-linux.tar.gz && curl -L $URL | tar xz -C /usr/local \
     && curl https://raw.githubusercontent.com/ethereum/cpp-ethereum/develop/scripts/jsonrpcproxy.py > /jsonrpcproxy.py
 
 RUN git clone https://github.com/ewasm/hera && \
