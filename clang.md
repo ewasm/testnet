@@ -1,26 +1,50 @@
 # Compiling C/C++ to WebAssembly
 
-## Rolling your own compiler
+Many high level languages already support compilation to WebAssembly
+through the experimental LLVM backend. Unfortunately, it is a tedious
+and poorly documented process. This document aims to alleviate some
+of this tedium with a step-by-step tutorial to compile some basic C
+code to WAST format using LLVM, as well as provide instructions for building
+the toolchain.
 
-Clang has a WebAssembly target, though it is not easy to use currently. First, a custom build must be made.
+## Dependencies
 
-To build `clang`:
+- LLVM + Clang: Must be built with the experimental WebAssebmly backend enabled
+- Binaryen: Needed to convert the `.s` output of LLVM's backend to WAST
+
+## Install LLVM and Clang with the WebAssembly backend
+
+### From the repo
+
+First, clone the needed repositories:
+
 ```sh
 git clone http://llvm.org/git/llvm.git
 cd llvm/tools
 git clone http://llvm.org/git/clang.git
 cd ../projects
 git clone http://llvm.org/git/compiler-rt.git
+
+Then initialize CMake:
+
+```sh
 mkdir ../build
 cd ../build
 cmake -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD=WebAssembly -DLLVM_TARGETS_TO_BUILD= ..
-cmake --build .
-cd ../..
 ```
 
-This will take anything from 1 to 5 hours.
+Lastly, call `make` as usual:
 
-To build `binaryen`:
+```sh
+cmake --build .
+```
+
+At the end of the (long) build the binaries will be in `bin`. Feel free to add that to your `PATH` for ease of use.
+
+## Install Binaryen
+
+This one is much easier. Simply:
+
 ```sh
 git clone https://github.com/WebAssembly/binaryen.git
 cd binaryen
@@ -28,27 +52,22 @@ mkdir build
 cd build
 cmake ..
 cmake --build .
-cd ../..
 ```
 
-## Using this compiler
+CMake will also generate an `install` target if you want to actually install Binaryen on your system.
 
-Now everything is set to finally compile *Hello World*!
+## Compile C/C++ to WebAssembly
 
-The compilation process has four steps:
-- compiling (`clang`)
-- linking to LLVM IR (`llc`)
-- compiling to WebAssembly S-expressions (`s2wasm`)
-- compiling to WebAssembly binary (`wasm-as`)
+First we must compile C to LLVM bitcode through the Clang frontend:
 
-Note: the last step can also be accomplished with [wabt](https://github.com/webassembly/wabt) (previously called *sexpr-wasm-prototype*).
+`clang -emit-llvm --target=wasm32-unknown-unknown-elf -c -o source.bc source.c`
 
-Cheat sheet:
-```sh
-clang -emit-llvm --target=wasm32-unknown-unknown-elf -nostdlib -S hello.c
-llc -o hello.s hello.ll
-s2wasm -o hello.wast hello.s
-wasm-as -o hello.wasm hello.wast
-```
+Next we can generate linear WASM output from the bitcode:
 
-There you go, you have your very first WebAssembly binary.
+`llc -asm-verbose=false -o main.s main.bc`
+
+The backend output is in linear WASM format so we must convert this to WAST with binaryen's `s2wasm` tool:
+
+`s2wasm -o main.wast main.s`
+
+The code will now be in WAST format but must be cleaned up with `ewasm-cleanup` to be deployed as a contract.
