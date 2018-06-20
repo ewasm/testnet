@@ -54,4 +54,4 @@ See `jsonrcpproxy.py --help` for more options.
 
 ## Tests
 
-Track the progress of EEI test implementation [here](https://github.com/ethereum/tests/pull/394)
+Learn how to create and run ewasm tests [here](https://github.com/ewasm/tests/blob/06e0c19e117b48adcc6dd07def286d65b7e63f41/src/GeneralStateTestsFiller/stEWASMTests/README.md).
