@@ -3,52 +3,14 @@ Many high level languages already support compilation to WebAssembly
 through the experimental LLVM backend. Unfortunately, it is a tedious
 and poorly documented process. This document aims to alleviate some
 of this tedium with a step-by-step tutorial to compile some basic C
-code to WAST format using LLVM.
+code to WAST format using LLVM, as well as provide instructions for building
+the toolchain.
 
 ## Dependencies
 - LLVM + Clang: Must be built with the experimental WASM backend enabled
 - Binaryen: Needed to convert the `.s` output of LLVM's backend to WAST
 
 ## Install LLVM and Clang with the WASM backend
-### Via package manager
-Some package managers support package options which ease the process of
-installing LLVM with special features. If you have one of these, you are in luck.
-#### Portage
-The only ebuilds of LLVM and Clang supporting the WASM target are the ones that checkout
-the latest sources from subversion. Because they are regarded as unstable by Portage,
-we must manually unmask these packages. This is done by telling portage to accept all keywords
-for said packages.
-
-Add the following lines to your `package.accept_keywords` file: 
-
-`=sys-devel/llvm-9999 **`
-
-`=sys-devel/clang-9999 **`
-
-`=sys-devel/clang-runtime-9999 **`
-
-`=sys-libs/libomp-9999 **`
-
-`=sys-devel/clang-common-6.0.0 ~amd64`
-
-`=sys-libs/compiler-rt-9999 **`
-
-`=sys-libs/compiler-rt-sanitizers-9999 **`
-
-Next we add the following USE flags to package.use:  
-
-`>=sys-devel/llvm-5.0.1 llvm_targets_WebAssembly`
-
-`>=sys-devel/clang-5.0.1 llvm_targets_WebAssembly`  
-
-Note: Specifying all package atoms with a higher version than `5.0.1` just in case a stable version
-releases with WASM support.
-
-Lastly, LLVM and Clang can be emerged. Make sure that the USE flag is enabled:  
-`sudo emerge -av llvm clang`
-
-#### Other package managers
-install gentoo
 
 ### From the repo
 First, clone the needed repositories:  
