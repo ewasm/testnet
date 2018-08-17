@@ -91,3 +91,7 @@ Hera supports EVMC out of the box, but geth not yet.
 ## Tests
 
 Learn how to create and run ewasm tests [here](https://github.com/ewasm/tests/blob/06e0c19e117b48adcc6dd07def286d65b7e63f41/src/GeneralStateTestsFiller/stEWASMTests/README.md).
+
+## Testnet Faucet
+
+It is a fork of the [MetaMask faucet](https://faucet.metamask.io/). The fork is maintained [here](https://github.com/ewasm/eth-faucet).
