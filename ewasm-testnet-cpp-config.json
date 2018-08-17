@@ -39,6 +39,7 @@
     "0000000000000000000000000000000000000006": { "precompiled": { "name": "alt_bn128_G1_add", "startingBlock" : "0x2dc6c0", "linear": { "base": 500, "word": 0 } } }, 
     "0000000000000000000000000000000000000007": { "precompiled": { "name": "alt_bn128_G1_mul", "startingBlock" : "0x2dc6c0", "linear": { "base": 40000, "word": 0 } } }, 
     "0000000000000000000000000000000000000008": { "precompiled": { "name": "alt_bn128_pairing_product", "startingBlock" : "0x2dc6c0" } },
+    "000000000000000000000000000000000000000a": { "codeFromFile": "dummymetering.wasm", "balance": "0x01" },
     "efadf166849f06eee4b44ddb78e4162580f436b1": { "balance": "1000000000000000000000", "storage": {}, "nonce": "0x0", "code": "" }
   } 
 }
