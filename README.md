@@ -1,13 +1,13 @@
 # ewasm testnet coordination / documentation repo
 
-## cpp-ethereum
+## Aleth (ex cpp-ethereum)
 
-To build cpp-ethereum with the recent eWASM changes use [ewasm](https://github.com/ethereum/cpp-ethereum/tree/ewasm).
+To build Aleth with the recent eWASM changes use [ewasm](https://github.com/ethereum/aleth/tree/ewasm).
 
-The `eth`, `ethvm` and `testeth` contain options to run them with [Hera eWASM VM](https://github.com/ewasm/hera):
+`aleth`, `alethvm` and `testeth` contain options to run them with [Hera eWASM VM](https://github.com/ewasm/hera):
 
 - `--vm hera` enables Hera only,
-- `--evmc fallback=true` enables fallback to EVM 1.0 Interpreter when EVM bytecode is detected.
+- `--evmc fallback=true` enables fallback to EVM 1.0 Interpreter when EVM bytecode is detected (off by default)
 
 ### Test net differences from main net
 
@@ -24,7 +24,7 @@ The config is in [ewasm-testnet-cpp-config.json](ewasm-testnet-cpp-config.json).
 Example node with mining on single CPU core, with no bootstrap:
 
 ```sh
-eth \
+aleth \
 --vm hera \
 --evmc fallback=true \
 -d /tmp/ewasm-node/4201 \
@@ -39,10 +39,10 @@ eth \
 
 ### JSON-RPC over HTTP
 
-The cpp-ethereum (eth) does not have the HTTP server built in, the JSON-RPC requests are served only via an Unix Socket file.
+Aleth does not have the HTTP server built in, the JSON-RPC requests are served only via an Unix Socket file.
 By default, the location of the socket file is `<data-dir>/geth.ipc` (yes, **geth**).
 
-The cpp-ethereum repo includes a Python3 script called jsonrpcproxy.py located in [scripts/jsonrpcproxy.py](https://github.com/ethereum/cpp-ethereum/blob/develop/scripts/jsonrpcproxy.py).
+The Aleth repo includes a Python3 script called `jsonrpcproxy.py` located in [scripts/jsonrpcproxy.py](https://github.com/ethereum/aleth/blob/master/scripts/jsonrpcproxy.py).
 
 Run it as
 
