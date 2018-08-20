@@ -81,6 +81,12 @@ Hera supports EVMC out of the box, but geth not yet.
 	export EVMC_PATH=~/hera/build/src/libhera.so
 	```
 
+	Additionally `geth` will check the `EVMC_OPTIONS` environment variable for EVMC options. Multiple options can be specified by separating them with a space:
+
+	```sh
+	export EVMC_OPTIONS='metering=true fallback=true'
+	```
+
 	Run the built geth with configuration for Ewasm testnet.
 
 	```sh
