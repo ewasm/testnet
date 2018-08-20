@@ -2,16 +2,16 @@
 
 ## Aleth (ex cpp-ethereum)
 
-To build Aleth with the recent eWASM changes use [ewasm](https://github.com/ethereum/aleth/tree/ewasm).
+To build Aleth with the recent ewasm changes use [ewasm](https://github.com/ethereum/aleth/tree/ewasm).
 
-`aleth`, `alethvm` and `testeth` contain options to run them with [Hera eWASM VM](https://github.com/ewasm/hera):
+`aleth`, `alethvm` and `testeth` contain options to run them with [Hera ewasm VM](https://github.com/ewasm/hera):
 
 - `--vm hera` enables Hera only,
 - `--evmc fallback=true` enables fallback to EVM 1.0 Interpreter when EVM bytecode is detected (off by default)
 
 ### Test net differences from main net
 
-Supports executing EVM 1.0 (Byzantium) **and** eWASM bytecode. The chain id is set to 0x42 (66).
+Supports executing EVM 1.0 (Byzantium) **and** ewasm bytecode. The chain id is set to 0x42 (66).
 
 There are two differences:
 - code size limit introduced by Spurious Dragon has been lifted and there is no upper limit
@@ -55,9 +55,9 @@ See `jsonrcpproxy.py --help` for more options.
 
 ## geth + Hera
 
-This section describes how to run geth node with Ewasm backend.
+This section describes how to run geth node with ewasm backend.
 
-The key component to add Ewasm to geth is [EVMC](https://github.com/ethereum/evmc).
+The key component to add ewasm to geth is [EVMC](https://github.com/ethereum/evmc).
 Hera supports EVMC out of the box, but geth not yet.
 
 1. Build geth with EVMC
@@ -81,7 +81,13 @@ Hera supports EVMC out of the box, but geth not yet.
 	export EVMC_PATH=~/hera/build/src/libhera.so
 	```
 
-	Run the built geth with configuration for Ewasm testnet.
+	Additionally `geth` will check the `EVMC_OPTIONS` environment variable for EVMC options. Multiple options can be specified by separating them with a space:
+
+	```sh
+	export EVMC_OPTIONS='metering=true fallback=true'
+	```
+
+	Run the built geth with configuration for ewasm testnet.
 
 	```sh
 	build/bin/geth
