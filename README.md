@@ -73,7 +73,7 @@ Hera supports EVMC out of the box, but geth not yet.
 
 1. Build geth with EVMC
 
-	Checkout `evmc` branch of go-ethereum fork https://github.com/chfast/go-ethereum ([PR](https://github.com/ethereum/go-ethereum/pull/17050)).
+	Checkout `evmc` branch of go-ethereum fork https://github.com/chfast/go-ethereum/tree/evmc ([PR](https://github.com/ethereum/go-ethereum/pull/17050)).
 	Build geth following official [build instructions](https://github.com/ethereum/go-ethereum#building-the-source).
 
 2. Build Hera to shared library
