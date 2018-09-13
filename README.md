@@ -100,7 +100,7 @@ Hera supports EVMC out of the box, but geth not yet.
 	export EVMC_OPTIONS='metering=true fallback=true'
 	```
 
-    Initialize the geth node priot starting up to ensure all blockchain parameters are correctly set:
+    Initialize the geth node prior to starting up to ensure all blockchain parameters are correctly set:
     
     ```sh
     ./build/bin/geth --datadir /tmp/ewasm-node/4201/ init ewasm-testnet-geth-config.json
@@ -109,7 +109,7 @@ Hera supports EVMC out of the box, but geth not yet.
 	Run the built geth with configuration for ewasm testnet.
 
 	```sh
-	./build/bin/geth --datadir /tmp/ewasm-node/4201/ --etherbase 031159dF845ADe415202e6DA299223cb640B9DB0 --rpc --rpcapi "web3,net,eth,debug" --rpcvhosts=* --rpcaddr "0.0.0.0" --rpccorsdomain "*" --vmodule "miner=12,rpc=12" --mine --miner.threads 1 --nodiscover --networkid 66 
+	./build/bin/geth --datadir /tmp/ewasm-node/4201/ --etherbase 031159dF845ADe415202e6DA299223cb640B9DB0 --rpc --rpcapi "web3,net,eth,debug" --rpcvhosts="*" --rpcaddr "0.0.0.0" --rpccorsdomain "*" --vmodule "miner=12,rpc=12" --mine --miner.threads 1 --nodiscover --networkid 66 
 	```
     *NOTE*: don't forget to specify `networkId` with the same value as the value of `chainID` in the genesis configuration, this is to avoid [Metamask error `Invalid Sender`](https://github.com/MetaMask/metamask-extension/issues/3673).
 
