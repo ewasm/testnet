@@ -21,14 +21,14 @@
     "allowFutureBlocks" : false 
   }, 
   "genesis": { 
-    "nonce": "0x0000000000000042", 
-    "difficulty": "0x400", 
+    "nonce": "0x0000000000000000", 
+    "difficulty": "0x1", 
     "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000", 
     "author": "0x0000000000000000000000000000000000000000", 
-    "timestamp": "0x5A5B92D7", 
+    "timestamp": "0x5b79de34", 
     "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000", 
-    "extraData": "0x655741534d2074657374206e6574776f726b2030", 
-    "gasLimit": "0x989680" 
+    "extraData": "0x0000000000000000000000000000000000000000000000000000000000000000", 
+    "gasLimit": "0x47b760" 
   }, 
   "accounts": { 
     "0000000000000000000000000000000000000001": { "precompiled": { "name": "ecrecover", "linear": { "base": 3000, "word": 0 } } },
@@ -39,8 +39,10 @@
     "0000000000000000000000000000000000000006": { "precompiled": { "name": "alt_bn128_G1_add", "startingBlock" : "0x2dc6c0", "linear": { "base": 500, "word": 0 } } }, 
     "0000000000000000000000000000000000000007": { "precompiled": { "name": "alt_bn128_G1_mul", "startingBlock" : "0x2dc6c0", "linear": { "base": 40000, "word": 0 } } }, 
     "0000000000000000000000000000000000000008": { "precompiled": { "name": "alt_bn128_pairing_product", "startingBlock" : "0x2dc6c0" } },
-    "000000000000000000000000000000000000000a": { "codeFromFile": "dummymetering.wasm", "balance": "0x01" },
-    "000000000000000000000000000000000000000b": { "codeFromFile": "dummyevm2wasm.wasm", "balance": "0x01" },
-    "efadf166849f06eee4b44ddb78e4162580f436b1": { "balance": "1000000000000000000000", "storage": {}, "nonce": "0x0", "code": "" }
+    "000000000000000000000000000000000000000a": { "codeFromFile": "dummymetering.wasm", "balance": "0x01", "nonce": "0x00", "storage": {} },
+    "000000000000000000000000000000000000000b": { "codeFromFile": "dummyevm2wasm.wasm", "balance": "0x01", "nonce": "0x00", "storage": {} },
+    "9fa4f23079bae7a7a5c392b67e18093310315bfc": { "balance": "0x200000000000000000000000000000000000000000000000000000000000000", "storage": {}, "nonce": "0x0", "code": "" },
+    "a8c3eeb2915373139bcfc287d4ae9e660d734881": { "balance": "0x200000000000000000000000000000000000000000000000000000000000000", "storage": {}, "nonce": "0x0", "code": "" },
+    "5b096e931655fc08c997991c1498afefb8dbd2f9": { "balance": "0x200000000000000000000000000000000000000000000000000000000000000", "storage": {}, "nonce": "0x0", "code": "" }
   } 
 }
