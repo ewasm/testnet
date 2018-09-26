@@ -157,6 +157,7 @@ Hera supports EVMC out of the box, but geth not yet.
 2. Build hera as a shared library:
 
 	```sh
+	> cd
 	> git clone https://github.com/ewasm/hera && cd hera
 	> mkdir build && cd build
 	> cmake .. -DBUILD_SHARED_LIBS=ON
@@ -174,19 +175,31 @@ Hera supports EVMC out of the box, but geth not yet.
 	
 	Note that the `4201/` directory name above is arbitrary. It just needs to be unique.
 
-1. Run geth with hera:
+1. Run geth with hera and connect to the testnet:
 
-	geth will check the `EVMC_PATH` environment variable for path to EVMC VM shared library. Point it to the hera shared library.
+	`geth` will check the `EVMC_PATH` environment variable for path to EVMC VM shared library. Point it to the hera shared library that you built a moment ago. Additionally `geth` will check the `EVMC_OPTIONS` environment variable for EVMC options (which are documented in [hera](https://github.com/ewasm/hera)). Multiple options can be specified by separating them with a space, e.g., `EVMC_OPTIONS='metering=true fallback=true'`.
+	
+	Note also the `--etherbase`, `--networkid`, and `--bootnodes` commands, below, and copy them verbatim as these are required to connect to and sync with the Ewasm testnet.
+	
+	The `--vmodule` argument sets the verbosity for the `eth` and `p2p` modules, which will provide lots of juicy debugging information on your node's connection to the other testnet peers, and on its mining, accepting, and propagating blocks.
+	
+	Finally, if you want your node to participate in mining, add the arguments `--mine --miner.threads 1`.
+	
+	Check out the geth [CLI wiki page](https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options) for more information on these commands, or just run `geth --help`.
+	
+	Here's the recommended configuration for connecting your node to the Ewasm testnet:
 
 	```sh
-	export EVMC_PATH=~/hera/build/src/libhera.so
+	> EVMC_PATH=~/hera/build/src/libhera.so EVMC_OPTIONS='metering=true fallback=true' \
+	./build/bin/geth \
+	--etherbase a8c3eeb2915373139bcfc287d4ae9e660d734881 \
+	--rpc --rpcapi "web3,net,eth,debug" --rpcvhosts=* --rpcaddr "0.0.0.0" --rpccorsdomain "*" \
+	--vmodule "eth=12,p2p=12" \
+	--networkid 66 \
+	--bootnodes "enode://2a4115eb2ab97eea00759d1edcb53d06efa5edc0d7272b4be73ddec49667a6f078278c62aacfb1d44df4d25c04c99d39f02d430ae2dd070891218d6cd121bc8e@40.114.204.83:30303"
 	```
-
-	Additionally `geth` will check the `EVMC_OPTIONS` environment variable for EVMC options. Multiple options can be specified by separating them with a space:
-
-	```sh
-	export EVMC_OPTIONS='metering=true fallback=true'
-	```
+	
+	Note that if you want your node to be automatically restarted if it dies, and to survive system reboots, you'll want to use a tool such as [pm2](http://pm2.keymetrics.io/).
 
     Initialize the geth node prior to starting up to ensure all blockchain parameters are correctly set:
     
@@ -200,6 +213,7 @@ Hera supports EVMC out of the box, but geth not yet.
 	./build/bin/geth --datadir /tmp/ewasm-node/4201/ --etherbase 031159dF845ADe415202e6DA299223cb640B9DB0 --rpc --rpcapi "web3,net,eth,debug" --rpcvhosts="*" --rpcaddr "0.0.0.0" --rpccorsdomain "*" --vmodule "miner=12,rpc=12" --mine --miner.threads 1 --nodiscover --networkid 66 
 	```
     *NOTE*: don't forget to specify `networkId` with the same value as the value of `chainID` in the genesis configuration, this is to avoid [Metamask error `Invalid Sender`](https://github.com/MetaMask/metamask-extension/issues/3673).
+1. Enabling ethstats:
 
 #### Docker configuration
 
