@@ -173,7 +173,7 @@ Hera supports EVMC out of the box, but geth not yet.
 	> ./build/bin/geth --datadir /tmp/ewasm-node/4201/ init ewasm-testnet-geth-genesis.json
 	```
 	
-	Note that the `4201/` directory name above is arbitrary. It just needs to be unique.
+	Note that the `/tmp/ewasm-node/4201` directory name above is arbitrary. It just needs to be unique.
 
 1. Run geth with hera and connect to the testnet:
 
@@ -181,7 +181,7 @@ Hera supports EVMC out of the box, but geth not yet.
 	
 	Note also the `--etherbase`, `--networkid`, and `--bootnodes` commands, below, and copy them verbatim as these are required to connect to and sync with the Ewasm testnet.
 	
-	The `--vmodule` argument sets the verbosity for the `eth` and `p2p` modules, which will provide lots of juicy debugging information on your node's connection to the other testnet peers, and on its mining, accepting, and propagating blocks.
+	The `--vmodule` argument sets the verbosity for the `eth` and `p2p` modules, which will provide lots of juicy debugging information on your node's connection to the other testnet peers, and on its mining, accepting, and propagating blocks. Feel free to reduce verbosity or turn this off.
 	
 	Finally, if you want your node to participate in mining, add the arguments `--mine --miner.threads 1`.
 	
@@ -199,7 +199,11 @@ Hera supports EVMC out of the box, but geth not yet.
 	--bootnodes "enode://2a4115eb2ab97eea00759d1edcb53d06efa5edc0d7272b4be73ddec49667a6f078278c62aacfb1d44df4d25c04c99d39f02d430ae2dd070891218d6cd121bc8e@40.114.204.83:30303"
 	```
 	
-	Note that if you want your node to be automatically restarted if it dies, and to survive system reboots, you'll want to use a tool such as [pm2](http://pm2.keymetrics.io/).
+	Note that if you want your node to be automatically restarted if it dies, and to survive system reboots, you'll want to use a tool such as [pm2](http://pm2.keymetrics.io/):
+	
+	```sh
+	> npm install -g pm2
+	```
 
     Initialize the geth node prior to starting up to ensure all blockchain parameters are correctly set:
     
@@ -214,6 +218,19 @@ Hera supports EVMC out of the box, but geth not yet.
 	```
     *NOTE*: don't forget to specify `networkId` with the same value as the value of `chainID` in the genesis configuration, this is to avoid [Metamask error `Invalid Sender`](https://github.com/MetaMask/metamask-extension/issues/3673).
 1. Enabling ethstats:
+
+	Ethstats is a pretty UI for monitoring network state, which allows individual nodes to communicate their state to a centralized server via WebSockets. (See for instance the page for the [Ethereum mainnet](https://ethstats.net/).) Nodes must be added manually. The Ewasm team maintains an [ethstats page for the testnet](http://testnet.ewasmile.ch:3000/). If you'd like your node to be added, follow these steps:
+	
+	- Make sure that you have a recent version of nodejs installed.
+	- Download and configure the [eth-net-intelligence-api](https://github.com/cubedro/eth-net-intelligence-api) package:
+	
+	```sh
+	> git clone https://github.com/cubedro/eth-net-intelligence-api && cd eth-net-intelligence-api
+	> npm install
+	> NODE_ENV=production INSTANCE_NAME="Your instance name" CONTACT_DETAILS="Your contact info (optional)" WS_SERVER=wss://testnet.ewasmile.ch WS_SECRET=97255273942224 VERBOSITY=2 node www/app.js
+	```
+	
+	You'll want to run this using `pm2` as well if you intend to keep it running long term. See the instructions for [eth-net-intelligence-api](https://github.com/cubedro/eth-net-intelligence-api), especially the [build.sh script](https://github.com/cubedro/eth-net-intelligence-api#installation-on-an-ubuntu-ec2-instance).
 
 #### Docker configuration
 
