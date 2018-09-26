@@ -51,21 +51,31 @@ There are two differences:
 
 ## Adding a node to the testnet
 
-The testnet currently only supports the go-ethereum (geth) client. Support for aleth (formerly, cpp-ethereum) is a work in progress and more information may be found here.
+The testnet currently only supports the go-ethereum (geth) client. Support for aleth (formerly, cpp-ethereum) is a work in progress and more information may be found [here](aleth.md).
 
 ### Geth
 
 You may install and configfure geth in the following ways:
 
-- manually, from source or binary
+- manually, from source
 - using this preconfigured Docker image
 
+#### Manual configuration
 
-## Aleth (ex cpp-ethereum)
+Manually configuring geth requires installing prerequisites, downloading and compiling geth from source with [EVMC](https://github.com/ethereum/evmc) support, downloading and building [hera](https://github.com/ewasm/hera/) (the Ewasm virtual machine connector), then launching geth with hera set as its EVMC engine.
 
-To build Aleth with the recent ewasm changes use [ewasm](https://github.com/ethereum/aleth/tree/ewasm).
+1. Make sure the prerequisites are installed (Go version 1.7 or later and a C compiler).
+1. Build geth with EVMC:
 
-`aleth`, `alethvm` and `testeth` contain options to run them with [Hera ewasm VM](https://github.com/ewasm/hera):
+	Checkout the `evmc` branch of [this geth fork](https://github.com/chfast/go-ethereum/tree/evmc):
+	
+	`> git clone https://github.com/chfast/go-ethereum && cd go-ethereum`
+	
+	`> git checkout evmc`
+	
+	Build geth following the official [build instructions](https://github.com/ethereum/go-ethereum#building-the-source):
+	
+	`> make geth`
 
 - `--vm hera` enables Hera only,
 - `--evmc fallback=true` enables fallback to EVM 1.0 Interpreter when EVM bytecode is detected (off by default)
@@ -131,15 +141,15 @@ Hera supports EVMC out of the box, but geth not yet.
 	Checkout `evmc` branch of go-ethereum fork https://github.com/chfast/go-ethereum/tree/evmc ([PR](https://github.com/ethereum/go-ethereum/pull/17050)).
 	Build geth following official [build instructions](https://github.com/ethereum/go-ethereum#building-the-source).
 
-2. Build Hera to shared library
+2. Build hera as a shared library:
 
 	```sh
-	mkdir build && cd build
-	cmake .. -DBUILD_SHARED_LIBS=ON
-	cmake --build .
+	> mkdir build && cd build
+	> cmake .. -DBUILD_SHARED_LIBS=ON
+	> cmake --build .
 	```
 
-3. Run geth with Hera
+1. Run geth with Hera
 
 	geth will check the `EVMC_PATH` environment variable for path to EVMC VM shared library. Point it to Hera shared library.
 
@@ -165,6 +175,8 @@ Hera supports EVMC out of the box, but geth not yet.
 	./build/bin/geth --datadir /tmp/ewasm-node/4201/ --etherbase 031159dF845ADe415202e6DA299223cb640B9DB0 --rpc --rpcapi "web3,net,eth,debug" --rpcvhosts="*" --rpcaddr "0.0.0.0" --rpccorsdomain "*" --vmodule "miner=12,rpc=12" --mine --miner.threads 1 --nodiscover --networkid 66 
 	```
     *NOTE*: don't forget to specify `networkId` with the same value as the value of `chainID` in the genesis configuration, this is to avoid [Metamask error `Invalid Sender`](https://github.com/MetaMask/metamask-extension/issues/3673).
+
+#### Docker configuration
 
 ## Tests
 
