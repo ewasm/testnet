@@ -41,9 +41,9 @@ You don't need any special infrastructure to transact on the Ewasm testnet. You 
 
 Voila! You're now ready to transact on the testnet.
 
-## Test net differences from main net
+## Differences from mainnet
 
-Supports executing EVM 1.0 (Byzantium) **and** ewasm bytecode. The chain id is set to 0x42 (66).
+The Ewasm testnet supports executing EVM 1.0 (Byzantium) bytecode **and** ewasm bytecode. The chain id is set to 0x42 (66).
 
 There are two differences:
 - code size limit introduced by Spurious Dragon has been lifted and there is no upper limit
@@ -51,7 +51,7 @@ There are two differences:
 
 ## Adding a node to the testnet
 
-The testnet currently only supports the go-ethereum (geth) client. Support for aleth (formerly, cpp-ethereum) is a work in progress and more information may be found [here](aleth.md).
+The testnet currently only supports the [go-ethereum](https://github.com/ethereum/go-ethereum) (geth) client. Support for aleth (formerly, cpp-ethereum) is a work in progress and more information may be found [here](aleth.md).
 
 ### Geth
 
