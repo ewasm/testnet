@@ -64,18 +64,31 @@ You may install and configfure geth in the following ways:
 
 Manually configuring geth requires installing prerequisites, downloading and compiling geth from source with [EVMC](https://github.com/ethereum/evmc) support, downloading and building [hera](https://github.com/ewasm/hera/) (the Ewasm virtual machine connector), then launching geth with hera set as its EVMC engine.
 
-1. Make sure the prerequisites are installed (Go version 1.7 or later and a C compiler).
+1. Make sure the prerequisites are installed (Go version 1.7 or later, `cmake`, and a C compiler).
+
+	On CentOS-flavored Linux (e.g., Amazon Linux) you can use the following commands:
+	
+	```sh
+	> sudo yum groupinstall "Development Tools"
+	> wget https://cmake.org/files/v3.12/cmake-3.12.2-Linux-x86_64.sh
+	> sudo bash cmake-3.12.2-Linux-x86_64.sh --prefix=/usr/local
+	> sudo yum install go
+	```
+
 1. Build geth with EVMC:
 
 	Checkout the `evmc` branch of [this geth fork](https://github.com/chfast/go-ethereum/tree/evmc):
 	
-	`> git clone https://github.com/chfast/go-ethereum && cd go-ethereum`
-	
-	`> git checkout evmc`
+	```sh
+	> git clone https://github.com/chfast/go-ethereum && cd go-ethereum
+	> git checkout evmc
+	```
 	
 	Build geth following the official [build instructions](https://github.com/ethereum/go-ethereum#building-the-source):
 	
-	`> make geth`
+	```sh
+	> make geth
+	```
 
 - `--vm hera` enables Hera only,
 - `--evmc fallback=true` enables fallback to EVM 1.0 Interpreter when EVM bytecode is detected (off by default)
@@ -144,14 +157,26 @@ Hera supports EVMC out of the box, but geth not yet.
 2. Build hera as a shared library:
 
 	```sh
+	> git clone https://github.com/ewasm/hera && cd hera
 	> mkdir build && cd build
 	> cmake .. -DBUILD_SHARED_LIBS=ON
 	> cmake --build .
 	```
+	
+	Note: if you get an error about `No rule to make target 'deps/lib/libbinaryen.a'`, see workaround [here](https://github.com/ewasm/hera/issues/431).
 
-1. Run geth with Hera
+1. Download the [genesis file](ewasm-geth-genesis.json) and use it to initialize geth:
 
-	geth will check the `EVMC_PATH` environment variable for path to EVMC VM shared library. Point it to Hera shared library.
+	```sh
+	> wget https://raw.githubusercontent.com/ewasm/testnet/master/ewasm-testnet-geth-genesis.json
+	> ./build/bin/geth --datadir /tmp/ewasm-node/4201/ init ewasm-testnet-geth-genesis.json
+	```
+	
+	Note that the `4201/` directory name above is arbitrary. It just needs to be unique.
+
+1. Run geth with hera:
+
+	geth will check the `EVMC_PATH` environment variable for path to EVMC VM shared library. Point it to the hera shared library.
 
 	```sh
 	export EVMC_PATH=~/hera/build/src/libhera.so
