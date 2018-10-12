@@ -2,7 +2,8 @@
 
 Welcome to the Ewasm public testnet! This repository is the primary point of coordination for the testnet. Read on for more information about how to:
 
-- Transact on the testnet, such as by deploying smart contracts compiled to Ewasm bytecode
+- Write smart contracts in supported languages and compile them to Wasm bytecode
+- Transact on the testnet, including deploying contracts
 - Add a node to the testnet
 - Participate in mining
 - Participate in network forks
@@ -30,6 +31,17 @@ The primary communication channels for the Ewasm project are GitHub and Gitter.
 - Join the [public Ewasm chatroom on Gitter](https://gitter.im/ewasm/Lobby)
 
 The team also hosts a (roughly) fortnightly public "Ewasm community hangout" call. Look for the the next scheduled call in [ewasm/pm issues](https://github.com/ewasm/pm/issues). Calls are announced, including dial-in information, in [ewasm/Lobby](https://gitter.im/ewasm/Lobby). Calls are also livestreamed and recorded.
+
+## Writing and compiling smart contracts
+
+One of the [design goals](https://github.com/ewasm/design/blob/master/rationale.md) of the Ewasm project is to support smart contract development in a wide range of languages, using a range of tooling, including existing, mature toolchains such as LLVM (C/C++, Kotlin, Rust, and [many others](https://en.wikipedia.org/wiki/LLVM)) and JavaScript/TypeScript. In theory, any language that can be compiled to Wasm can be used to write a smart contract (as long as it implements the [contract interface](https://github.com/ewasm/design/blob/master/contract_interface.md) and [Ethereum interface](https://github.com/ewasm/design/blob/master/eth_interface.md)). See [awesome-wasm-langs](https://github.com/appcypher/awesome-wasm-langs) for a reasonably up-to-date list of such languages.
+
+At present, we've developed support for the following languages and toolchains:
+
+- LLVM: C, C++, and Rust: documentation pending
+- [AssemblyScript](https://github.com/AssemblyScript/assemblyscript), a subset of TypeScript, which uses the JavaScript toolchain: see the [main document](assemblyscript.md) for more information on writing contracts in AssemblyScript
+
+If you're interested in adding support for another language, framework, or toolset, see the Contributing section above and reach out.
 
 ## Transacting
 
