@@ -55,7 +55,7 @@ The testnet currently only supports the [go-ethereum](https://github.com/ethereu
 
 ### Geth
 
-You may install and configfure geth in the following ways:
+You may install and configure geth in the following ways:
 
 - manually, from source
 - using this preconfigured Docker image
@@ -154,17 +154,14 @@ Hera supports EVMC out of the box, but geth not yet.
 	Checkout `evmc` branch of go-ethereum fork https://github.com/chfast/go-ethereum/tree/evmc ([PR](https://github.com/ethereum/go-ethereum/pull/17050)).
 	Build geth following official [build instructions](https://github.com/ethereum/go-ethereum#building-the-source).
 
-2. Build hera as a shared library:
+1. Build Hera as a shared library (full build instructions [here](https://github.com/ewasm/hera#building-hera)):
 
 	```sh
-	> cd
 	> git clone https://github.com/ewasm/hera && cd hera
 	> mkdir build && cd build
 	> cmake .. -DBUILD_SHARED_LIBS=ON
 	> cmake --build .
 	```
-	
-	Note: if you get an error about `No rule to make target 'deps/lib/libbinaryen.a'`, see workaround [here](https://github.com/ewasm/hera/issues/431).
 
 1. Download the [genesis file](ewasm-geth-genesis.json) and use it to initialize geth:
 
