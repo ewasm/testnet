@@ -33,11 +33,11 @@ The team also hosts a (roughly) fortnightly public "Ewasm community hangout" cal
 
 ## Transacting
 
-You don't need any special infrastructure to transact on the Ewasm testnet. You may run your own node (see below), or you may use the public node. You may view the list of testnet tools here: http://<TESTNET_URL>/. Start by requesting test ether from the faucet:
+You don't need any special infrastructure to transact on the Ewasm testnet. You may run your own node (see below), or you may use the public node. You may view the list of testnet tools here: http://ewasm.ethereum.org/. Start by requesting test ether from the faucet:
 
-- Configure Metamask to use the public node. Open Metamask, tap the network selector at the top, and click Custom RPC. Enter the following URL and click Save: http://<TESTNET_URL>:8545.
-- Browse to the [faucet](http://<TESTNET_URL>/faucet), make sure it read your public key correctly from Metamask in the "user" section, then tap "request 1 ether from faucet" in the "faucet" section.
-- Open the [testnet explorer](http://<TESTNET_URL>/explorer/) and watch your faucet transaction get mined.
+- Configure Metamask to use the public node. Open Metamask, tap the network selector at the top, and click Custom RPC. Enter the following URL and click Save: http://ewasm.ethereum.org:8545.
+- Browse to the [faucet](http://ewasm.ethereum.org/faucet), make sure it read your public key correctly from Metamask in the "user" section, then tap "request 1 ether from faucet" in the "faucet" section.
+- Open the [testnet explorer](http://ewasm.ethereum.org/explorer/) and watch your faucet transaction get mined.
 
 Voila! You're now ready to transact on the testnet.
 
@@ -99,11 +99,11 @@ Aleth supports EVMC out of the box, but geth not yet.
 	> make geth
 	```
 
-- `--vm hera` enables Hera only,
-- `--evmc fallback=true` enables fallback to EVM 1.0 Interpreter when EVM bytecode is detected (off by default)
+	- `--vm hera` enables Hera only,
+	- `--evmc fallback=true` enables fallback to EVM 1.0 Interpreter when EVM bytecode is detected (off by default)
 
 
-2. Build Hera as a shared library (full build instructions [here](https://github.com/ewasm/hera#building-hera)):
+1. Build Hera as a shared library (full build instructions [here](https://github.com/ewasm/hera#building-hera)):
 
 	```sh
 	> git clone https://github.com/ewasm/hera && cd hera
@@ -112,7 +112,7 @@ Aleth supports EVMC out of the box, but geth not yet.
 	> cmake --build .
 	```
 
-3. Download the [genesis file](ewasm-testnet-geth-config.json) and use it to initialize geth:
+1. Download the [genesis file](ewasm-testnet-geth-config.json) and use it to initialize geth:
 
 	```sh
 	> wget https://raw.githubusercontent.com/ewasm/testnet/master/ewasm-testnet-geth-config.json
@@ -121,7 +121,7 @@ Aleth supports EVMC out of the box, but geth not yet.
 	
 	Note that the `/tmp/ewasm-node/4201` directory name above is arbitrary. It just needs to be unique.
 
-4. Run geth with hera and connect to the testnet:
+1. Run geth with hera and connect to the testnet:
 
 	`geth` will check the `EVMC_PATH` environment variable for path to EVMC VM shared library. Point it to the hera shared library that you built a moment ago. Additionally `geth` will check the `EVMC_OPTIONS` environment variable for EVMC options (which are documented in [hera](https://github.com/ewasm/hera)). Multiple options can be specified by separating them with a space, e.g., `EVMC_OPTIONS='metering=true fallback=true'`.
 	
