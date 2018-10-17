@@ -5,7 +5,7 @@
 - `--vm hera` enables Hera only,
 - `--evmc fallback=true` enables fallback to EVM 1.0 Interpreter when EVM bytecode is detected (off by default)
 
-### Run eth node
+### Run Aleth + hera
 
 The config is in [ewasm-testnet-cpp-config.json](ewasm-testnet-cpp-config.json).
 
