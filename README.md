@@ -143,7 +143,7 @@ Aleth supports EVMC out of the box, but geth not yet.
 	--rpc --rpcapi "web3,net,eth,debug" --rpcvhosts=* --rpcaddr "0.0.0.0" --rpccorsdomain "*" \
 	--vmodule "eth=12,p2p=12" \
 	--networkid 66 \
-	--bootnodes "enode://2a4115eb2ab97eea00759d1edcb53d06efa5edc0d7272b4be73ddec49667a6f078278c62aacfb1d44df4d25c04c99d39f02d430ae2dd070891218d6cd121bc8e@40.114.204.83:30303"
+	--bootnodes "enode://53458e6bf0353f3378e115034cf6c6039b9faed52548da9030b37b4672de4a8fd09f869c48d16f9f10937e7398ae0dbe8b9d271408da7a0cf47f42a09e662827@23.101.78.254:30303"
 	```
 	
 	Note that if you want your node to be automatically restarted if it dies, and to survive system reboots, you'll want to use a tool such as [pm2](http://pm2.keymetrics.io/):
