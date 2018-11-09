@@ -39,7 +39,7 @@ One of the [design goals](https://github.com/ewasm/design/blob/master/rationale.
 At present, we've developed support for the following languages and toolchains:
 
 - LLVM: C, C++, and Rust: documentation pending
-- [AssemblyScript](https://github.com/AssemblyScript/assemblyscript), a subset of TypeScript, which uses the JavaScript toolchain: see the [main document](assemblyscript.md) for more information on writing contracts in AssemblyScript
+- [AssemblyScript](https://github.com/AssemblyScript/assemblyscript), a subset of TypeScript, which uses the JavaScript toolchain: see the [etherts org](https://github.com/etherts/docs) for more information on writing contracts in AssemblyScript.
 
 If you're interested in adding support for another language, framework, or toolset, see the Contributing section above and reach out.
 
