@@ -43,7 +43,7 @@ ethCmd+=(--mining on)
 ethCmd+=(--mining-threads 1)
 ethCmd+=(--ask 1)
 ethCmd+=(--address 0x031159dF845ADe415202e6DA299223cb640B9DB0)
-ethCmd+=(--config /ewasm-testnet-cpp-config.json)
+ethCmd+=(--config /ewasm-testnet-aleth-config.json)
 ethCmd+=(--listen 1234)
 ethCmd+=(${PEER_SET:+ --peerset "${PEER_SET}"}) # only use --peerset when $PEER_SET not empty
 

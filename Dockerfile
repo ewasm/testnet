@@ -22,7 +22,7 @@ RUN git clone https://github.com/ewasm/hera && \
 		make -j8 && \
     cp src/libhera.so /
 
-ADD ewasm-testnet-cpp-config.json /ewasm-testnet-cpp-config.json
+ADD ewasm-testnet-aleth-config.json /ewasm-testnet-aleth-config.json
 
 ADD cpp-eth.sh /cpp-eth.sh
 ADD enodes /enodes
