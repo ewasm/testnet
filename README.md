@@ -16,11 +16,12 @@ For more information on Ewasm, please refer to the following resources:
 
 - [Ewasm background, motivation, goals, and design](https://github.com/ewasm/design)
 - [The current Ewasm design spec](https://github.com/ewasm/design/blob/master/eth_interface.md)
+- [CoinFund Live: Crypto Talks with Ewasm's Lane Rettig and Alex Beregszaszi](https://www.youtube.com/watch?v=gWaYnlU_pPI) (this is a high-level overview of the project's goals and current status as of 10/2018, including some helpful background on the broader Wasm ecosystem)
+- [WebAssembly for Web 3.0 with Alex Beregszaszi, Peter Czaban, Sergei Shulepov & Lane Rettig](https://www.youtube.com/watch?v=H-Wz4lL3LMc) from the Web3 Summit, October 2018
 - [Latest Ewasm community call including live demo of the testnet](https://www.youtube.com/watch?v=apIHpBSdBio)
 - [Why eWASM? by Alex Beregszaszi (@axic)](https://www.youtube.com/watch?v=VF7f_s2P3U0)
 - [Panel: entire eWASM team discussion and Q&A](https://youtu.be/ThvForkdPyc?t=119)
 - [Ewasm community meetup at ETHBuenosAires](https://www.youtube.com/watch?v=qDzrbj7dtyU)
-- [CoinFund Live: Crypto Talks with Ewasm's Lane Rettig and Alex Beregszaszi](https://www.youtube.com/watch?v=gWaYnlU_pPI) (this is a high-level overview of the project's goals and current status as of 10/2018, including some helpful background on the broader Wasm ecosystem)
 
 ## Contributing
 
