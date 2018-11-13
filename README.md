@@ -102,8 +102,13 @@ Aleth supports EVMC out of the box, but geth not yet.
 
 	Clone the [the ewasm geth fork](https://github.com/ewasm/go-ethereum):
 
+	Geth for ewasm testnet is released regularly by tagging the above fork with `ewasm-testnet-milestoneX`, where
+	`X` stands for a milestone number.
+
+	(Latest: [`ewasm-testnet-milestone1`](https://github.com/ewasm/go-ethereum/tree/ewasm-testnet-milestone1))
+
 	```sh
-	> git clone https://github.com/ewasm/go-ethereum 
+	> git clone https://github.com/ewasm/go-ethereum -b ewasm-testnet-milestone1
 	> cd go-ethereum
 	```
 
@@ -172,10 +177,19 @@ Aleth supports EVMC out of the box, but geth not yet.
 	Run the built geth with configuration for ewasm testnet.
 
 	```sh
-	./build/bin/geth --datadir /tmp/ewasm-node/4201/ --etherbase 031159dF845ADe415202e6DA299223cb640B9DB0 --vm.ewasm="/path/to/libhera.so,metering=true,fallback=true" --rpc --rpcapi "web3,net,eth,debug" --rpcvhosts="*" --rpcaddr "0.0.0.0" --rpccorsdomain "*" --vmodule "miner=12,rpc=12" --mine --miner.threads 1 --nodiscover --networkid 66 
+	./build/bin/geth \
+	--vm.ewasm="/path/to/libhera.so,metering=true,fallback=true" \
+	--datadir /tmp/ewasm-node/4201/ \
+	--etherbase 031159dF845ADe415202e6DA299223cb640B9DB0 \
+	--rpc --rpcapi "web3,net,eth,debug" \
+	--rpcvhosts="*" --rpcaddr "0.0.0.0" \
+	--rpccorsdomain "*" \
+	--vmodule "miner=12,rpc=12" \
+	--mine --miner.threads 1 \
+	--nodiscover \
+	--networkid 66 
 	```
     *NOTE*: don't forget to specify `networkId` with the same value as the value of `chainID` in the genesis configuration, this is to avoid [Metamask error `Invalid Sender`](https://github.com/MetaMask/metamask-extension/issues/3673).
-
 
 
 ### Aleth (cpp-ethereum) + Hera
