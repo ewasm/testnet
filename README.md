@@ -137,8 +137,7 @@ Aleth supports EVMC out of the box, but geth not yet.
 	Here's the recommended configuration for connecting your node to the Ewasm testnet:
 
 	```sh
-	> EVMC_PATH=~/hera/build/src/libhera.so EVMC_OPTIONS='metering=true fallback=true' \
-	./build/bin/geth \
+	> ./build/bin/geth \
 	--vm.ewasm="/home/ewasm/hera/src/libhera.so:metering=true:fallback=true" \
 	--etherbase a8c3eeb2915373139bcfc287d4ae9e660d734881 \
 	--rpc --rpcapi "web3,net,eth,debug" --rpcvhosts=* --rpcaddr "0.0.0.0" --rpccorsdomain "*" \
