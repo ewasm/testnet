@@ -212,7 +212,8 @@ This section describes how to run geth node with the [Wagon](http://github.com/g
 	--rpccorsdomain "*" \
 	--mine --miner.threads 1 \
 	--nodiscover \
-	--networkid 66
+	--networkid 66 \
+	--bootnodes "enode://53458e6bf0353f3378e115034cf6c6039b9faed52548da9030b37b4672de4a8fd09f869c48d16f9f10937e7398ae0dbe8b9d271408da7a0cf47f42a09e662827@23.101.78.254:30303"
 	```
 
 
