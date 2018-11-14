@@ -227,12 +227,12 @@ This section describes how to run geth node with the [Wagon](http://github.com/g
 Support for aleth (formerly, cpp-ethereum) is a work in progress and more information may be found [here](aleth.md).
 
 
-### Enabling ethstats:
+### Enabling ethstats
 
-	Ethstats is a pretty UI for monitoring network state, which allows individual nodes to communicate their state to a centralized server via WebSockets. (See for instance the page for the [Ethereum mainnet](https://ethstats.net/).) Nodes must be added manually. The Ewasm team maintains an [ethstats page for the testnet](http://ewasm.ethereum.org/ethstats). If you'd like your node to be added, follow these steps:
+Ethstats is a pretty UI for monitoring network state, which allows individual nodes to communicate their state to a centralized server via WebSockets. (See for instance the page for the [Ethereum mainnet](https://ethstats.net/).) Nodes must be added manually. The Ewasm team maintains an [ethstats page for the testnet](http://ewasm.ethereum.org/ethstats). If you'd like your node to be added, follow these steps:
 
-	- Make sure that you have a recent version of nodejs installed.
-	- Download and configure the [eth-net-intelligence-api](https://github.com/cubedro/eth-net-intelligence-api) package:
+- Make sure that you have a recent version of nodejs installed.
+- Download and configure the [eth-net-intelligence-api](https://github.com/cubedro/eth-net-intelligence-api) package:
 
 	```sh
 	> git clone https://github.com/cubedro/eth-net-intelligence-api && cd eth-net-intelligence-api
@@ -240,7 +240,7 @@ Support for aleth (formerly, cpp-ethereum) is a work in progress and more inform
 	> NODE_ENV=production INSTANCE_NAME="Your instance name" CONTACT_DETAILS="Your contact info (optional)" WS_SERVER=wss://ewasm.ethereum.org WS_SECRET=97255273942224 VERBOSITY=2 node www/app.js
 	```
 
-	You'll want to run this using `pm2` as well if you intend to keep it running long term. See the instructions for [eth-net-intelligence-api](https://github.com/cubedro/eth-net-intelligence-api), especially the [build.sh script](https://github.com/cubedro/eth-net-intelligence-api#installation-on-an-ubuntu-ec2-instance).
+You'll want to run this using `pm2` as well if you intend to keep it running long term. See the instructions for [eth-net-intelligence-api](https://github.com/cubedro/eth-net-intelligence-api), especially the [build.sh script](https://github.com/cubedro/eth-net-intelligence-api#installation-on-an-ubuntu-ec2-instance).
 
 
 ## Tests
