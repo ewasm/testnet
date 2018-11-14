@@ -100,22 +100,23 @@ Aleth supports EVMC out of the box, but geth not yet.
 
 1. Build geth with EVMC
 
-	Checkout the `evmc` branch of [this geth fork](https://github.com/chfast/go-ethereum/tree/evmc) ([PR](https://github.com/ethereum/go-ethereum/pull/17050)):
-	
+	Clone the [the ewasm geth fork](https://github.com/ewasm/go-ethereum):
+
+	Geth for ewasm testnet is released regularly by tagging the above fork with `ewasm-testnet-milestoneX`, where
+	`X` stands for a milestone number.
+
+	(Latest: [`ewasm-testnet-milestone1`](https://github.com/ewasm/go-ethereum/tree/ewasm-testnet-milestone1))
+
 	```sh
-	> git clone https://github.com/chfast/go-ethereum && cd go-ethereum
-	> git checkout evmc
+	> git clone https://github.com/ewasm/go-ethereum -b ewasm-testnet-milestone1
+	> cd go-ethereum
 	```
-	
+
 	Build geth following the official [build instructions](https://github.com/ethereum/go-ethereum#building-the-source):
 	
 	```sh
 	> make geth
 	```
-
-	- `--vm hera` enables Hera only,
-	- `--evmc fallback=true` enables fallback to EVM 1.0 Interpreter when EVM bytecode is detected (off by default)
-
 
 1. Build Hera as a shared library (full build instructions [here](https://github.com/ewasm/hera#building-hera)):
 
@@ -137,7 +138,9 @@ Aleth supports EVMC out of the box, but geth not yet.
 
 1. Run geth with hera and connect to the testnet:
 
-	`geth` will check the `EVMC_PATH` environment variable for path to EVMC VM shared library. Point it to the hera shared library that you built a moment ago. Additionally `geth` will check the `EVMC_OPTIONS` environment variable for EVMC options (which are documented in [hera](https://github.com/ewasm/hera)). Multiple options can be specified by separating them with a space, e.g., `EVMC_OPTIONS='metering=true fallback=true'`.
+	Use `--vm.ewasm` flag in `geth` to plug in an EVMC VM shared library. Point it to the Hera shared library that you built a moment ago. 
+	Additional EVMC options can be provided after a comma. 
+	Hera options are documented in [hera](https://github.com/ewasm/hera).
 	
 	Note also the `--etherbase`, `--networkid`, and `--bootnodes` commands, below, and copy them verbatim as these are required to connect to and sync with the Ewasm testnet.
 	
@@ -174,10 +177,19 @@ Aleth supports EVMC out of the box, but geth not yet.
 	Run the built geth with configuration for ewasm testnet.
 
 	```sh
-	./build/bin/geth --datadir /tmp/ewasm-node/4201/ --etherbase 031159dF845ADe415202e6DA299223cb640B9DB0 --vm.ewasm="/path/to/libhera.so,metering=true,fallback=true" --rpc --rpcapi "web3,net,eth,debug" --rpcvhosts="*" --rpcaddr "0.0.0.0" --rpccorsdomain "*" --vmodule "miner=12,rpc=12" --mine --miner.threads 1 --nodiscover --networkid 66 
+	./build/bin/geth \
+	--vm.ewasm="/path/to/libhera.so,metering=true,fallback=true" \
+	--datadir /tmp/ewasm-node/4201/ \
+	--etherbase 031159dF845ADe415202e6DA299223cb640B9DB0 \
+	--rpc --rpcapi "web3,net,eth,debug" \
+	--rpcvhosts="*" --rpcaddr "0.0.0.0" \
+	--rpccorsdomain "*" \
+	--vmodule "miner=12,rpc=12" \
+	--mine --miner.threads 1 \
+	--nodiscover \
+	--networkid 66 
 	```
     *NOTE*: don't forget to specify `networkId` with the same value as the value of `chainID` in the genesis configuration, this is to avoid [Metamask error `Invalid Sender`](https://github.com/MetaMask/metamask-extension/issues/3673).
-
 
 
 ### Aleth (cpp-ethereum) + Hera
