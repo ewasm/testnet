@@ -24,10 +24,10 @@ RUN git clone https://github.com/ewasm/hera && \
 
 ADD ewasm-testnet-aleth-config.json /ewasm-testnet-aleth-config.json
 
-ADD cpp-eth.sh /cpp-eth.sh
+ADD aleth.sh /aleth.sh
 ADD enodes /enodes
 
 # Export the usual networking ports to allow outside access to the node
 EXPOSE 8545 30303
 
-ENTRYPOINT ["/cpp-eth.sh"]
+ENTRYPOINT ["/aleth.sh"]

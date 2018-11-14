@@ -30,26 +30,26 @@ fi
 
 echo $PEER_SET
 
-echo "running eth..."
+echo "running aleth..."
 
 
-ethCmd=(aleth)
+alethCmd=(aleth)
 
-ethCmd+=(--vm /libhera.so)
-ethCmd+=(--evmc fallback=true)
-ethCmd+=(--db-path /tmp/ewasm-node/4201)
-ethCmd+=(--no-bootstrap)
-ethCmd+=(--mining on)
-ethCmd+=(--mining-threads 1)
-ethCmd+=(--ask 1)
-ethCmd+=(--address 0x031159dF845ADe415202e6DA299223cb640B9DB0)
-ethCmd+=(--config /ewasm-testnet-aleth-config.json)
-ethCmd+=(--listen 1234)
-ethCmd+=(${PEER_SET:+ --peerset "${PEER_SET}"}) # only use --peerset when $PEER_SET not empty
+alethCmd+=(--vm /libhera.so)
+alethCmd+=(--evmc fallback=true)
+alethCmd+=(--db-path /tmp/ewasm-node/4201)
+alethCmd+=(--no-bootstrap)
+alethCmd+=(--mining on)
+alethCmd+=(--mining-threads 1)
+alethCmd+=(--ask 1)
+alethCmd+=(--address 0x031159dF845ADe415202e6DA299223cb640B9DB0)
+alethCmd+=(--config /ewasm-testnet-aleth-config.json)
+alethCmd+=(--listen 1234)
+alethCmd+=(${PEER_SET:+ --peerset "${PEER_SET}"}) # only use --peerset when $PEER_SET not empty
 
-echo ${ethCmd[@]}
+echo ${alethCmd[@]}
 
-"${ethCmd[@]}" &
+"${alethCmd[@]}" &
   
 
 #  --peerset "required:61e5475e6870260af84bcf61c02b2127a5c84560401452ae9c99b9ff4f0f343d65c9e26209ec32d42028b365addba27824669eb70c73f69568964f77433afbbe@127.0.0.1:1234" \
