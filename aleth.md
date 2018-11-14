@@ -1,4 +1,4 @@
-## Aleth (formerly, `cpp-ethereum`)
+## Aleth (formerly cpp-ethereum)
 
 `aleth`, `alethvm` and `testeth` contain options to run them with [Hera ewasm VM](https://github.com/ewasm/hera):
 
@@ -11,19 +11,21 @@ The config is in [ewasm-testnet-aleth-config.json](ewasm-testnet-aleth-config.js
 
 Example node with mining on single CPU core, with no bootstrap:
 
-1) Build (hera)[https://github.com/ewasm/hera] as a shared library:
+1) Build [Hera](https://github.com/ewasm/hera) as a shared library:
+```sh
+> git clone https://github.com/ewasm/hera --recursive
+> cd hera
+> mkdir build && cd build
+> cmake .. -DBUILD_SHARED_LIBS=ON
+> cmake --build .
 ```
-git clone https://github.com/ewasm/hera --recursive
-cd hera
-mkdir build && cd build
-cmake .. -DBUILD_SHARED_LIBS=ON
-cmake --build .
-```
+
 The shared library file is located under the `src` directory.
 
 2) Run aleth:
+
 ```sh
-aleth \
+> aleth \
 --vm /path/to/libhera.so \
 --evmc fallback=true \
 -d /tmp/ewasm-node/4201 \
