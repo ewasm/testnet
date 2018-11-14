@@ -99,16 +99,7 @@ If you're interested in adding support for another language, framework, or tools
 
 The testnet currently only supports the [go-ethereum](https://github.com/ethereum/go-ethereum) (geth) client. Support for aleth (formerly, cpp-ethereum) is a work in progress and more information may be found [here](aleth.md).
 
-## Adding a node to the testnet
-
 ### Geth
-
-You may install and configure geth in the following ways:
-
-- manually, from source
-- using this preconfigured Docker image
-
-#### Manual configuration
 
 Manually configuring geth requires installing prerequisites, downloading and compiling geth from source with [EVMC](https://github.com/ethereum/evmc) support, downloading and building [Hera](https://github.com/ewasm/hera/) (the Ewasm virtual machine connector), then launching geth with Hera set as its EVMC engine.
 
@@ -129,7 +120,7 @@ Manually configuring geth requires installing prerequisites, downloading and com
 	> sudo apt-get install build-essential make cmake golang
 	```
 
-## geth + Hera
+### geth + Hera
 
 The genesis is in [ewasm-testnet-geth-config.json](ewasm-testnet-geth-config.json)
 
@@ -217,7 +208,7 @@ Aleth supports EVMC out of the box, but geth not yet.
 	```
 
 
-## geth + Wagon
+### geth + Wagon
 
 **NOTE: this client currently is not supported fully and the instructions here may be wrong.**
 
@@ -262,6 +253,9 @@ This section describes how to run geth node with the [Wagon](http://github.com/g
 **NOTE: this client currently is not supported fully and the instructions here may be wrong.**
 
 Support for aleth (formerly, cpp-ethereum) is a work in progress and more information may be found [here](aleth.md).
+
+
+## Syncing to the testnet
 
 
 ### Enabling ethstats
