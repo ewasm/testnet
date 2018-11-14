@@ -221,7 +221,15 @@ This section describes how to run geth node with the [Wagon](http://github.com/g
 	The ewasm interpreter will be activated by default as long as you do not specify a `--vm.ewasm=...` on the command line option.
 
 	```sh
-	> TMPDIR=/tmp/ewasm-node/ ./geth --datadir $TMPDIR --etherbase 031159dF845ADe415202e6DA299223cb640B9DB0 --rpc --rpcapi "web3,net,eth,debug" --rpcvhosts="*" --rpcaddr "0.0.0.0" --rpccorsdomain "*" --mine --miner.threads 1 --nodiscover --networkid 66
+	> ./geth \
+	--datadir /tmp/ewasm-node/4201/ \
+	--etherbase 031159dF845ADe415202e6DA299223cb640B9DB0 \
+	--rpc --rpcapi "web3,net,eth,debug" \
+	--rpcvhosts="*" --rpcaddr "0.0.0.0" \
+	--rpccorsdomain "*" \
+	--mine --miner.threads 1 \
+	--nodiscover \
+	--networkid 66
 	```
 
 
