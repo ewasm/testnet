@@ -36,6 +36,7 @@ The shared library file is located under the `src` directory.
 -a 0x031159dF845ADe415202e6DA299223cb640B9DB0 \
 --config ewasm-testnet-aleth-config.json \
 --peerset "required:61e5475e6870260af84bcf61c02b2127a5c84560401452ae9c99b9ff4f0f343d65c9e26209ec32d42028b365addba27824669eb70c73f69568964f77433afbbe@127.0.0.1:1234"
+--log-verbosity 4
 ```
 
 ### JSON-RPC over HTTP
