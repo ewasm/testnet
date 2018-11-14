@@ -169,12 +169,6 @@ Aleth supports EVMC out of the box, but geth not yet.
 	> npm install -g pm2
 	```
 
-	Initialize the geth node prior to starting up to ensure all blockchain parameters are correctly set:
-
-	```sh
-	> ./build/bin/geth --datadir /tmp/ewasm-node/4201/ init ewasm-testnet-geth-config.json
-	```
-
 	Run the built geth with configuration for ewasm testnet.
 
 	```sh
