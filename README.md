@@ -193,6 +193,35 @@ Aleth supports EVMC out of the box, but geth not yet.
 	*NOTE*: don't forget to specify `networkId` with the same value as the value of `chainID` in the genesis configuration, this is to avoid [Metamask error `Invalid Sender`](https://github.com/MetaMask/metamask-extension/issues/3673).
 
 
+## geth + Wagon
+
+This section describes how to run geth node with the [Wagon](http://github.com/go-interpreter/wagon) VM.
+
+1. Get the code from the PR
+
+	```sh
+	> go get github.com/ethereum/go-ethereum
+	> cd $GOROOT/src/github.com/ethereum/go-ethereum
+	> git remote add gballet git@github.com:gballet/go-ethereum.git
+	> git fetch gballet add-ewasm
+	> git checkout add-ewasm
+	```
+
+2. Build geth
+
+	```sh
+	> go build ./cmd/geth/...
+	```
+
+3. Run geth
+
+	The ewasm interpreter will be activated by default as long as you do not specify a `--vm.ewasm=...` on the command line option.
+
+	```sh
+	> TMPDIR=/tmp/ewasm-node/ ./geth --datadir $TMPDIR --etherbase 031159dF845ADe415202e6DA299223cb640B9DB0 --rpc --rpcapi "web3,net,eth,debug" --rpcvhosts="*" --rpcaddr "0.0.0.0" --rpccorsdomain "*" --mine --miner.threads 1 --nodiscover --networkid 66
+	```
+
+
 ### Aleth (cpp-ethereum) + Hera
 
 Support for aleth (formerly, cpp-ethereum) is a work in progress and more information may be found [here](aleth.md).
