@@ -81,7 +81,7 @@ Manually configuring geth requires installing prerequisites, downloading and com
 1. Make sure the prerequisites are installed (Go version 1.7 or later, `cmake`, and a C compiler).
 
 	On CentOS-flavored Linux (e.g., Amazon Linux) you can use the following commands:
-	
+
 	```sh
 	> sudo yum groupinstall "Development Tools"
 	> wget https://cmake.org/files/v3.12/cmake-3.12.2-Linux-x86_64.sh
@@ -93,7 +93,7 @@ Manually configuring geth requires installing prerequisites, downloading and com
 
 The config is in [ewasm-testnet-geth-config.json](ewasm-testnet-geth-config.json)
 
-This section describes how to run geth node with ewasm backend.
+This section describes how to run geth node with the Hera backend.
 
 The key component to add ewasm to geth is [EVMC](https://github.com/ethereum/evmc).
 Aleth supports EVMC out of the box, but geth not yet.
@@ -113,7 +113,7 @@ Aleth supports EVMC out of the box, but geth not yet.
 	```
 
 	Build geth following the official [build instructions](https://github.com/ethereum/go-ethereum#building-the-source):
-	
+
 	```sh
 	> make geth
 	```
@@ -133,7 +133,7 @@ Aleth supports EVMC out of the box, but geth not yet.
 	> wget https://raw.githubusercontent.com/ewasm/testnet/master/ewasm-testnet-geth-config.json
 	> ./build/bin/geth --datadir /tmp/ewasm-node/4201/ init ewasm-testnet-geth-config.json
 	```
-	
+
 	Note that the `/tmp/ewasm-node/4201` directory name above is arbitrary. It just needs to be unique.
 
 1. Run geth with hera and connect to the testnet:
@@ -141,15 +141,15 @@ Aleth supports EVMC out of the box, but geth not yet.
 	Use `--vm.ewasm` flag in `geth` to plug in an EVMC VM shared library. Point it to the Hera shared library that you built a moment ago. 
 	Additional EVMC options can be provided after a comma. 
 	Hera options are documented in [hera](https://github.com/ewasm/hera).
-	
+
 	Note also the `--etherbase`, `--networkid`, and `--bootnodes` commands, below, and copy them verbatim as these are required to connect to and sync with the Ewasm testnet.
-	
+
 	The `--vmodule` argument sets the verbosity for the `eth` and `p2p` modules, which will provide lots of juicy debugging information on your node's connection to the other testnet peers, and on its mining, accepting, and propagating blocks. Feel free to reduce verbosity or turn this off.
-	
+
 	Finally, if you want your node to participate in mining, add the arguments `--mine --miner.threads 1`.
-	
+
 	Check out the geth [CLI wiki page](https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options) for more information on these commands, or just run `geth --help`.
-	
+
 	Here's the recommended configuration for connecting your node to the Ewasm testnet:
 
 	```sh
@@ -161,23 +161,23 @@ Aleth supports EVMC out of the box, but geth not yet.
 	--networkid 66 \
 	--bootnodes "enode://53458e6bf0353f3378e115034cf6c6039b9faed52548da9030b37b4672de4a8fd09f869c48d16f9f10937e7398ae0dbe8b9d271408da7a0cf47f42a09e662827@23.101.78.254:30303"
 	```
-	
+
 	Note that if you want your node to be automatically restarted if it dies, and to survive system reboots, you'll want to use a tool such as [pm2](http://pm2.keymetrics.io/):
-	
+
 	```sh
 	> npm install -g pm2
 	```
 
-    Initialize the geth node prior to starting up to ensure all blockchain parameters are correctly set:
-    
-    ```sh
-    ./build/bin/geth --datadir /tmp/ewasm-node/4201/ init ewasm-testnet-geth-config.json
-    ```
-    
+	Initialize the geth node prior to starting up to ensure all blockchain parameters are correctly set:
+
+	```sh
+	> ./build/bin/geth --datadir /tmp/ewasm-node/4201/ init ewasm-testnet-geth-config.json
+	```
+
 	Run the built geth with configuration for ewasm testnet.
 
 	```sh
-	./build/bin/geth \
+	> ./build/bin/geth \
 	--vm.ewasm="/path/to/libhera.so,metering=true,fallback=true" \
 	--datadir /tmp/ewasm-node/4201/ \
 	--etherbase 031159dF845ADe415202e6DA299223cb640B9DB0 \
@@ -189,7 +189,8 @@ Aleth supports EVMC out of the box, but geth not yet.
 	--nodiscover \
 	--networkid 66 
 	```
-    *NOTE*: don't forget to specify `networkId` with the same value as the value of `chainID` in the genesis configuration, this is to avoid [Metamask error `Invalid Sender`](https://github.com/MetaMask/metamask-extension/issues/3673).
+
+	*NOTE*: don't forget to specify `networkId` with the same value as the value of `chainID` in the genesis configuration, this is to avoid [Metamask error `Invalid Sender`](https://github.com/MetaMask/metamask-extension/issues/3673).
 
 
 ### Aleth (cpp-ethereum) + Hera
@@ -200,16 +201,16 @@ Support for aleth (formerly, cpp-ethereum) is a work in progress and more inform
 ### Enabling ethstats:
 
 	Ethstats is a pretty UI for monitoring network state, which allows individual nodes to communicate their state to a centralized server via WebSockets. (See for instance the page for the [Ethereum mainnet](https://ethstats.net/).) Nodes must be added manually. The Ewasm team maintains an [ethstats page for the testnet](http://ewasm.ethereum.org/ethstats). If you'd like your node to be added, follow these steps:
-	
+
 	- Make sure that you have a recent version of nodejs installed.
 	- Download and configure the [eth-net-intelligence-api](https://github.com/cubedro/eth-net-intelligence-api) package:
-	
+
 	```sh
 	> git clone https://github.com/cubedro/eth-net-intelligence-api && cd eth-net-intelligence-api
 	> npm install
 	> NODE_ENV=production INSTANCE_NAME="Your instance name" CONTACT_DETAILS="Your contact info (optional)" WS_SERVER=wss://ewasm.ethereum.org WS_SECRET=97255273942224 VERBOSITY=2 node www/app.js
 	```
-	
+
 	You'll want to run this using `pm2` as well if you intend to keep it running long term. See the instructions for [eth-net-intelligence-api](https://github.com/cubedro/eth-net-intelligence-api), especially the [build.sh script](https://github.com/cubedro/eth-net-intelligence-api#installation-on-an-ubuntu-ec2-instance).
 
 
