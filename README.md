@@ -76,7 +76,7 @@ You may install and configure geth in the following ways:
 
 #### Manual configuration
 
-Manually configuring geth requires installing prerequisites, downloading and compiling geth from source with [EVMC](https://github.com/ethereum/evmc) support, downloading and building [hera](https://github.com/ewasm/hera/) (the Ewasm virtual machine connector), then launching geth with hera set as its EVMC engine.
+Manually configuring geth requires installing prerequisites, downloading and compiling geth from source with [EVMC](https://github.com/ethereum/evmc) support, downloading and building [Hera](https://github.com/ewasm/hera/) (the Ewasm virtual machine connector), then launching geth with Hera set as its EVMC engine.
 
 1. Make sure the prerequisites are installed (Go version 1.7 or later, `cmake`, and a C compiler).
 
@@ -91,7 +91,7 @@ Manually configuring geth requires installing prerequisites, downloading and com
 
 ## geth + Hera
 
-The config is in [ewasm-testnet-geth-config.json](ewasm-testnet-geth-config.json)
+The genesis is in [ewasm-testnet-geth-config.json](ewasm-testnet-geth-config.json)
 
 This section describes how to run geth node with the Hera backend.
 
@@ -121,7 +121,8 @@ Aleth supports EVMC out of the box, but geth not yet.
 1. Build Hera as a shared library (full build instructions [here](https://github.com/ewasm/hera#building-hera)):
 
 	```sh
-	> git clone https://github.com/ewasm/hera && cd hera
+	> git clone https://github.com/ewasm/hera -b ewasm-testnet-milestone1
+	> cd hera
 	> mkdir build && cd build
 	> cmake .. -DBUILD_SHARED_LIBS=ON
 	> cmake --build .
