@@ -121,7 +121,7 @@ Aleth supports EVMC out of the box, but geth not yet.
 1. Build Hera as a shared library (full build instructions [here](https://github.com/ewasm/hera#building-hera)):
 
 	```sh
-	> git clone https://github.com/ewasm/hera -b ewasm-testnet-milestone1
+	> git clone https://github.com/ewasm/hera --recursive -b ewasm-testnet-milestone1
 	> cd hera
 	> mkdir build && cd build
 	> cmake .. -DBUILD_SHARED_LIBS=ON
