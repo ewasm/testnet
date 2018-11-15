@@ -192,42 +192,7 @@ Aleth supports EVMC out of the box, but geth not yet.
 
 ### geth + Wagon
 
-**NOTE: this client currently is not supported fully and the instructions here may be wrong.**
-
-This section describes how to run geth node with the [Wagon](http://github.com/go-interpreter/wagon) VM.
-
-1. Get the code from the PR
-
-	```sh
-	> go get github.com/ethereum/go-ethereum
-	> cd $GOROOT/src/github.com/ethereum/go-ethereum
-	> git remote add gballet git@github.com:gballet/go-ethereum.git
-	> git fetch gballet add-ewasm
-	> git checkout add-ewasm
-	```
-
-2. Build geth
-
-	```sh
-	> go build ./cmd/geth/...
-	```
-
-3. Run geth
-
-	The Ewasm interpreter will be activated by default as long as you do not specify a `--vm.ewasm=...` on the command line option.
-
-	```sh
-	> ./geth \
-	--datadir /tmp/ewasm-node/4201/ \
-	--etherbase 031159dF845ADe415202e6DA299223cb640B9DB0 \
-	--rpc --rpcapi "web3,net,eth,debug" \
-	--rpcvhosts="*" --rpcaddr "0.0.0.0" \
-	--rpccorsdomain "*" \
-	--mine --miner.threads 1 \
-	--nodiscover \
-	--networkid 66 \
-	--bootnodes "enode://53458e6bf0353f3378e115034cf6c6039b9faed52548da9030b37b4672de4a8fd09f869c48d16f9f10937e7398ae0dbe8b9d271408da7a0cf47f42a09e662827@23.101.78.254:30303"
-	```
+The testnet has experimental support for running a geth node with the [Wagon](http://github.com/go-interpreter/wagon) third-party VM. Instructions may be found [here](wagon.md).
 
 ### Aleth (cpp-ethereum) + Hera
 
