@@ -37,6 +37,33 @@ The team also hosts a (roughly) fortnightly public "Ewasm community hangout" cal
 
 ## Writing and compiling smart contracts
 
+### Solidity/EVM
+
+You can deploy smart contracts written in Solidity and targeting EVM to the Ewasm testnet by using Truffle, just as you do with the Ethereum mainnet, testnets, and testrpc (Ganache). First, install [`truffle-hdwallet-provider`](https://github.com/trufflesuite/truffle-hdwallet-provider) as follows (note the specific release):
+
+```
+> npm install --save truffle-hdwallet-provider@web3-one
+```
+
+You'll want to use a `truffle.js` such as the following:
+
+```javascript
+var HDWalletProvider = require("truffle-hdwallet-provider");
+
+module.exports = {
+  networks: {
+    ewasm: {
+      network_id: "*",
+      provider: () => new HDWalletProvider("PRIVATE_KEY", "http://ewasm.ethereum.org:8545"),
+    },
+  }
+};
+```
+
+Replace `PRIVATE_KEY` with the appropriate private key for the account you used to tap the faucet, above. After doing this, the usual truffle commands (such as `truffle migrate --network ewasm`) should work.
+
+### Other languages
+
 One of the [design goals](https://github.com/ewasm/design/blob/master/rationale.md) of the Ewasm project is to support smart contract development in a wide range of languages, using a range of tooling, including existing, mature toolchains such as LLVM (C/C++, Kotlin, Rust, and [many others](https://en.wikipedia.org/wiki/LLVM)) and JavaScript/TypeScript. In theory, any language that can be compiled to Wasm can be used to write a smart contract (as long as it implements the [contract interface](https://github.com/ewasm/design/blob/master/contract_interface.md) and [Ethereum interface](https://github.com/ewasm/design/blob/master/eth_interface.md)). See [awesome-wasm-langs](https://github.com/appcypher/awesome-wasm-langs) for a list of such languages.
 
 At present, we've developed support for the following languages and toolchains:
