@@ -159,54 +159,36 @@ Aleth supports EVMC out of the box, but geth not yet.
 	> cmake --build .
 	```
 
-1. Download the [genesis file](ewasm-testnet-geth-config.json) and use it to initialize geth:
-
-	```sh
-	> wget https://raw.githubusercontent.com/ewasm/testnet/ewasm-testnet-milestone1/ewasm-testnet-geth-config.json
-	> ./build/bin/geth --datadir /tmp/ewasm-node/4201/ init ewasm-testnet-geth-config.json
-	```
-
-	Note that the `/tmp/ewasm-node/4201` directory name above is arbitrary. It just needs to be unique.
-
-1. Run geth with Hera and connect to the testnet:
+1. Run geth with Hera:
 
 	Use `--vm.ewasm` flag in `geth` to plug in an EVMC VM shared library. Point it to the Hera shared library that you built a moment ago. 
 	Additional EVMC options can be provided after a comma. 
 	Hera options are documented [here](https://github.com/ewasm/hera).
 
-	Note also the `--etherbase`, `--networkid`, and `--bootnodes` commands, below, and copy them verbatim as these are required to connect to and sync with the Ewasm testnet.
-
 	The `--vmodule` argument sets the verbosity for the `eth` and `p2p` modules, which will provide lots of juicy debugging information on your node's connection to the other testnet peers, and on its mining, accepting, and propagating blocks. Feel free to reduce verbosity or turn this off.
 
-	Finally, if you want your node to participate in mining, add the arguments `--mine --miner.threads 1`.
+	Finally, if you want your node to mine, add the arguments `--mine --miner.threads 1`.
 
 	Check out the geth [CLI wiki page](https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options) for more information on these commands, or just run `geth --help`.
 
-	Here's the recommended configuration for connecting your node to the Ewasm testnet:
+	Here's the recommended configuration for running a node locally:
 
 	```sh
 	> ./build/bin/geth \
 	--vm.ewasm="/path/to/libhera.so,metering=true,fallback=true" \
 	--datadir /tmp/ewasm-node/4201/ \
-	--etherbase 031159dF845ADe415202e6DA299223cb640B9DB0 \
 	--rpc --rpcapi "web3,net,eth,debug" \
 	--rpcvhosts="*" --rpcaddr "0.0.0.0" \
 	--rpccorsdomain "*" \
-	--vmodule "miner=12,rpc=12" \
-	--mine --miner.threads 1 \
-	--nodiscover \
-	--networkid 66 \
-	--bootnodes "enode://53458e6bf0353f3378e115034cf6c6039b9faed52548da9030b37b4672de4a8fd09f869c48d16f9f10937e7398ae0dbe8b9d271408da7a0cf47f42a09e662827@23.101.78.254:30303"
+	--vmodule "eth=12,p2p=12" \
+	--nodiscover
 	```
-
-	*NOTE*: don't forget to specify `networkId` with the same value as the value of `chainID` in the genesis configuration, this is to avoid [Metamask error `Invalid Sender`](https://github.com/MetaMask/metamask-extension/issues/3673).
 
 	Note that if you want your node to be automatically restarted if it dies, and to survive system reboots, you'll want to use a tool such as [pm2](http://pm2.keymetrics.io/):
 
 	```sh
 	> npm install -g pm2
 	```
-
 
 ### geth + Wagon
 
@@ -247,7 +229,6 @@ This section describes how to run geth node with the [Wagon](http://github.com/g
 	--bootnodes "enode://53458e6bf0353f3378e115034cf6c6039b9faed52548da9030b37b4672de4a8fd09f869c48d16f9f10937e7398ae0dbe8b9d271408da7a0cf47f42a09e662827@23.101.78.254:30303"
 	```
 
-
 ### Aleth (cpp-ethereum) + Hera
 
 **NOTE: this client currently is not supported fully and the instructions here may be wrong.**
@@ -256,6 +237,31 @@ Support for aleth (formerly, cpp-ethereum) is a work in progress and more inform
 
 
 ## Syncing to the testnet
+
+In order to sync to the testnet, you'll need the proper genesis configuration.
+
+1. Follow the steps above to download and build geth+Hera.
+
+1. Download the [genesis file](ewasm-testnet-geth-config.json) and use it to initialize geth:
+
+	```sh
+	> wget https://raw.githubusercontent.com/ewasm/testnet/ewasm-testnet-milestone1/ewasm-testnet-geth-config.json
+	> ./build/bin/geth --datadir /tmp/ewasm-node/4201/ init ewasm-testnet-geth-config.json
+	```
+
+	Note that the `/tmp/ewasm-node/4201` directory name above is arbitrary. It just needs to be unique.
+	
+	Note also the `--etherbase`, `--networkid`, and `--bootnodes` commands, below, and copy them verbatim as these are required to connect to and sync with the Ewasm testnet.
+
+	Don't forget to specify `networkId` with the same value as the value of `chainID` in the genesis configuration to avoid [Metamask error `Invalid Sender`](https://github.com/MetaMask/metamask-extension/issues/3673).
+	
+	Run geth as above, but add the following commandline args:
+
+	```sh
+	--etherbase a8c3eeb2915373139bcfc287d4ae9e660d734881 \
+	--networkid 66 \
+	--bootnodes "enode://53458e6bf0353f3378e115034cf6c6039b9faed52548da9030b37b4672de4a8fd09f869c48d16f9f10937e7398ae0dbe8b9d271408da7a0cf47f42a09e662827@23.101.78.254:30303"
+	```
 
 
 ### Enabling ethstats
