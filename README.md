@@ -78,7 +78,7 @@ You may install and configure geth in the following ways:
 
 Manually configuring geth requires installing prerequisites, downloading and compiling geth from source with [EVMC](https://github.com/ethereum/evmc) support, downloading and building [Hera](https://github.com/ewasm/hera/) (the Ewasm virtual machine connector), then launching geth with Hera set as its EVMC engine.
 
-1. Make sure the prerequisites are installed (Go version 1.7 or later, `cmake`, and a C compiler).
+1. Make sure the prerequisites are installed (Go version 1.7 or later, `cmake` 3.5 or later, and a C/C++ compiler).
 
 	On CentOS-flavored Linux (e.g., Amazon Linux) you can use the following commands:
 
@@ -87,6 +87,12 @@ Manually configuring geth requires installing prerequisites, downloading and com
 	> wget https://cmake.org/files/v3.12/cmake-3.12.2-Linux-x86_64.sh
 	> sudo bash cmake-3.12.2-Linux-x86_64.sh --prefix=/usr/local
 	> sudo yum install go
+	```
+
+	On Ubuntu/Debian-flavored system the following commands should work:
+
+	```sh
+	> sudo apt-get install build-essential make cmake golang
 	```
 
 ## geth + Hera
