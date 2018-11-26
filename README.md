@@ -35,6 +35,25 @@ The primary communication channels for the Ewasm project are GitHub and Gitter.
 
 The team also hosts a (roughly) fortnightly public "Ewasm community hangout" call. Look for the the next scheduled call in [ewasm/pm issues](https://github.com/ewasm/pm/issues). Calls are announced, including dial-in information, in [ewasm/Lobby](https://gitter.im/ewasm/Lobby). Calls are also livestreamed and recorded.
 
+## Differences from mainnet
+
+The Ewasm testnet supports executing EVM 1.0 (Byzantium) bytecode **and** ewasm bytecode. The chain id is set to 0x42 (decimal 66).
+
+There are two further technical differences:
+
+- the code size limit introduced by Spurious Dragon has been lifted and there is no upper limit (as Wasm bytecode is more verbose than the EVM equivalent)
+- zero bytes in contract bytecode are not subsidised during deployment (they cost the same as non-zero bytes)
+
+## Transacting
+
+You don't need any special infrastructure to transact on the Ewasm testnet. You may run your own node (see below), or you may use the public node. You may view the list of testnet tools here: http://ewasm.ethereum.org/. Start by requesting test ether from the faucet:
+
+- Configure Metamask to use the public node. Open Metamask, tap the network selector at the top, and click Custom RPC. Enter the following URL and click Save: http://ewasm.ethereum.org:8545.
+- Browse to the [faucet](http://ewasm.ethereum.org/faucet), make sure it read your public key correctly from Metamask in the "user" section, then tap "request 1 ether from faucet" in the "faucet" section.
+- Click the txid that appears in the "transactions" section and watch your faucet transaction get mined.
+
+Voila! You're now ready to transact on the testnet.
+
 ## Writing and compiling smart contracts
 
 ### Solidity/EVM
@@ -74,25 +93,6 @@ At present, we've developed support for the following languages and toolchains:
 - [AssemblyScript](https://github.com/AssemblyScript/assemblyscript), a subset of TypeScript, which uses the JavaScript toolchain: see the [etherts org](https://github.com/etherts/docs) for more information on writing contracts in AssemblyScript.
 
 If you're interested in adding support for another language, framework, or toolset, see the Contributing section above and reach out.
-
-## Differences from mainnet
-
-The Ewasm testnet supports executing EVM 1.0 (Byzantium) bytecode **and** ewasm bytecode. The chain id is set to 0x42 (decimal 66).
-
-There are two further technical differences:
-
-- the code size limit introduced by Spurious Dragon has been lifted and there is no upper limit (as Wasm bytecode is more verbose than the EVM equivalent)
-- zero bytes in contract bytecode are not subsidised during deployment (they cost the same as non-zero bytes)
-
-## Transacting
-
-You don't need any special infrastructure to transact on the Ewasm testnet. You may run your own node (see below), or you may use the public node. You may view the list of testnet tools here: http://ewasm.ethereum.org/. Start by requesting test ether from the faucet:
-
-- Configure Metamask to use the public node. Open Metamask, tap the network selector at the top, and click Custom RPC. Enter the following URL and click Save: http://ewasm.ethereum.org:8545.
-- Browse to the [faucet](http://ewasm.ethereum.org/faucet), make sure it read your public key correctly from Metamask in the "user" section, then tap "request 1 ether from faucet" in the "faucet" section.
-- Click the txid that appears in the "transactions" section and watch your faucet transaction get mined.
-
-Voila! You're now ready to transact on the testnet.
 
 ## Running a testnet node locally
 
