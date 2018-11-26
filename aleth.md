@@ -1,11 +1,13 @@
-## Aleth (formerly cpp-ethereum)
+# Aleth (formerly cpp-ethereum)
+
+**NOTE: this client currently is not supported fully and the instructions here may be wrong.**
 
 `aleth`, `alethvm` and `testeth` contain options to run them with [Hera ewasm VM](https://github.com/ewasm/hera):
 
 - `--vm hera` enables Hera only,
 - `--evmc fallback=true` enables fallback to EVM 1.0 Interpreter when EVM bytecode is detected (off by default)
 
-### Run Aleth + hera
+## Run Aleth + hera
 
 The config is in [ewasm-testnet-aleth-config.json](ewasm-testnet-aleth-config.json).
 
@@ -39,7 +41,7 @@ The shared library file is located under the `src` directory.
 --log-verbosity 4
 ```
 
-### JSON-RPC over HTTP
+## JSON-RPC over HTTP
 
 Aleth does not have the HTTP server built in, the JSON-RPC requests are served only via an Unix Socket file.
 By default, the location of the socket file is `<data-dir>/geth.ipc` (yes, **geth**).
