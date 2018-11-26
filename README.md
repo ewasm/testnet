@@ -39,9 +39,9 @@ The team also hosts a (roughly) fortnightly public "Ewasm community hangout" cal
 
 ### Solidity/EVM
 
-As of November 2018 Solidity is not capable of outputting Ewasm bytecode - however it is on the Solidity roadmap to support Ewasm. Given the Ewasm testnet is capable of running EVM bytecode it is possible to use Solidity as a contract language.
+Solidity is not currently capable of outputting Ewasm bytecode. However, Ewasm support is on the Solidity roadmap. Given that the Ewasm testnet is capable of running EVM bytecode it is possible to use Solidity as a contract language.
 
-You can deploy smart contracts written in Solidity and targeting EVM to the Ewasm testnet by using Truffle, just as you do with the Ethereum mainnet, testnets, and testrpc (Ganache). First, install [`truffle-hdwallet-provider`](https://github.com/trufflesuite/truffle-hdwallet-provider) as follows (note the specific release):
+You can deploy smart contracts written in Solidity and targeting EVM to the Ewasm testnet by using Truffle, just as you do with the Ethereum mainnet, testnets, and testrpc (Ganache). First, install [`truffle-hdwallet-provider`](https://github.com/trufflesuite/truffle-hdwallet-provider) as follows (**note the specific release**, `@web3-one`):
 
 ```
 > npm install --save truffle-hdwallet-provider@web3-one
