@@ -3,15 +3,16 @@
 Welcome to the Ewasm public testnet! This repository is the primary point of coordination for the testnet. Read on for more information about how to:
 
 - Write smart contracts in supported languages and compile them to Wasm bytecode
-- Transact on the testnet, including deploying contracts
+- Transact on the testnet, such as by deploying smart contracts compiled to Ewasm bytecode
+- Run a testnet node locally
 - Add a node to the testnet
 - Participate in mining
-- Participate in network forks
+- Participate in network upgrades
 - Contribute to development and devops
 
 ## Background
 
-Ewasm, which stands for Ethereum-flavored WebAssembly, is the primary candidate to replace EVM (the Ethereum virtual machine) as part of the Ethereum 2.0 "Shasper" roadmap. It is also proposed for adoption on the Ethereum mainnet. Ewasm is a deterministic smart contract execution engine built on the modern, standard [WebAssembly virtual machine](https://webassembly.org/).
+Ewasm, which stands for Ethereum-flavored WebAssembly, is the primary candidate to replace [EVM](https://github.com/ethereum/wiki/wiki/Ethereum-Virtual-Machine-(EVM)-Awesome-List) (the Ethereum virtual machine) as part of the Ethereum 2.0 "Serenity" roadmap. It is also proposed for adoption on the Ethereum mainnet. Ewasm is a deterministic smart contract execution engine built on the modern, standard [WebAssembly virtual machine](https://webassembly.org/).
 
 For more information on Ewasm, please refer to the following resources:
 
@@ -36,7 +37,7 @@ The team also hosts a (roughly) fortnightly public "Ewasm community hangout" cal
 
 ## Writing and compiling smart contracts
 
-One of the [design goals](https://github.com/ewasm/design/blob/master/rationale.md) of the Ewasm project is to support smart contract development in a wide range of languages, using a range of tooling, including existing, mature toolchains such as LLVM (C/C++, Kotlin, Rust, and [many others](https://en.wikipedia.org/wiki/LLVM)) and JavaScript/TypeScript. In theory, any language that can be compiled to Wasm can be used to write a smart contract (as long as it implements the [contract interface](https://github.com/ewasm/design/blob/master/contract_interface.md) and [Ethereum interface](https://github.com/ewasm/design/blob/master/eth_interface.md)). See [awesome-wasm-langs](https://github.com/appcypher/awesome-wasm-langs) for a reasonably up-to-date list of such languages.
+One of the [design goals](https://github.com/ewasm/design/blob/master/rationale.md) of the Ewasm project is to support smart contract development in a wide range of languages, using a range of tooling, including existing, mature toolchains such as LLVM (C/C++, Kotlin, Rust, and [many others](https://en.wikipedia.org/wiki/LLVM)) and JavaScript/TypeScript. In theory, any language that can be compiled to Wasm can be used to write a smart contract (as long as it implements the [contract interface](https://github.com/ewasm/design/blob/master/contract_interface.md) and [Ethereum interface](https://github.com/ewasm/design/blob/master/eth_interface.md)). See [awesome-wasm-langs](https://github.com/appcypher/awesome-wasm-langs) for a list of such languages.
 
 At present, we've developed support for the following languages and toolchains:
 
@@ -45,27 +46,30 @@ At present, we've developed support for the following languages and toolchains:
 
 If you're interested in adding support for another language, framework, or toolset, see the Contributing section above and reach out.
 
+## Differences from mainnet
+
+The Ewasm testnet supports executing EVM 1.0 (Byzantium) bytecode **and** ewasm bytecode. The chain id is set to 0x42 (decimal 66).
+
+There are two further technical differences:
+
+- the code size limit introduced by Spurious Dragon has been lifted and there is no upper limit (as Wasm bytecode is more verbose than the EVM equivalent)
+- zero bytes in contract bytecode are not subsidised during deployment (they cost the same as non-zero bytes)
+
 ## Transacting
 
 You don't need any special infrastructure to transact on the Ewasm testnet. You may run your own node (see below), or you may use the public node. You may view the list of testnet tools here: http://ewasm.ethereum.org/. Start by requesting test ether from the faucet:
 
 - Configure Metamask to use the public node. Open Metamask, tap the network selector at the top, and click Custom RPC. Enter the following URL and click Save: http://ewasm.ethereum.org:8545.
 - Browse to the [faucet](http://ewasm.ethereum.org/faucet), make sure it read your public key correctly from Metamask in the "user" section, then tap "request 1 ether from faucet" in the "faucet" section.
-- Open the [testnet explorer](http://ewasm.ethereum.org/explorer/) and watch your faucet transaction get mined.
+- Click the txid that appears in the "transactions" section and watch your faucet transaction get mined.
 
 Voila! You're now ready to transact on the testnet.
 
-## Differences from mainnet
-
-The Ewasm testnet supports executing EVM 1.0 (Byzantium) bytecode **and** ewasm bytecode. The chain id is set to 0x42 (66).
-
-There are two differences:
-- code size limit introduced by Spurious Dragon has been lifted and there is no upper limit
-- zero bytes in contract bytecode are not subsidised anymore during deployment (they cost the same as non-zero bytes)
-
-## Adding a node to the testnet
+## Running a testnet node locally
 
 The testnet currently only supports the [go-ethereum](https://github.com/ethereum/go-ethereum) (geth) client. Support for aleth (formerly, cpp-ethereum) is a work in progress and more information may be found [here](aleth.md).
+
+## Adding a node to the testnet
 
 ### Geth
 
@@ -252,4 +256,4 @@ Learn how to create and run ewasm tests [here](https://github.com/ewasm/tests/bl
 
 ## Testnet Faucet
 
-It is a fork of the [MetaMask faucet](https://faucet.metamask.io/). The fork is maintained [here](https://github.com/ewasm/eth-faucet).
+The faucet is a fork of the [MetaMask faucet](https://faucet.metamask.io/). The fork is maintained [here](https://github.com/ewasm/eth-faucet).
