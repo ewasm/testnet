@@ -170,7 +170,7 @@ Aleth supports EVMC out of the box, but geth not yet.
 1. Download the [genesis file](ewasm-testnet-geth-config.json) and use it to initialize geth:
 
 	```sh
-	> wget https://raw.githubusercontent.com/ewasm/testnet/master/ewasm-testnet-geth-config.json
+	> wget https://raw.githubusercontent.com/ewasm/testnet/ewasm-testnet-milestone1/ewasm-testnet-geth-config.json
 	> ./build/bin/geth --datadir /tmp/ewasm-node/4201/ init ewasm-testnet-geth-config.json
 	```
 
