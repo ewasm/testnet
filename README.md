@@ -37,7 +37,7 @@ The team also hosts a (roughly) fortnightly public "Ewasm community hangout" cal
 
 ## Differences from mainnet
 
-The Ewasm testnet supports executing EVM 1.0 (Byzantium) bytecode **and** ewasm bytecode. The chain id is set to 0x42 (decimal 66).
+The Ewasm testnet supports executing EVM 1.0 (Byzantium) bytecode **and** Ewasm bytecode. The chain id is set to 0x42 (decimal 66).
 
 There are two further technical differences:
 
@@ -135,14 +135,14 @@ The genesis is in [ewasm-testnet-geth-config.json](ewasm-testnet-geth-config.jso
 
 This section describes how to run geth node with the Hera backend.
 
-The key component to add ewasm to geth is [EVMC](https://github.com/ethereum/evmc).
+The key component to add Ewasm to geth is [EVMC](https://github.com/ethereum/evmc).
 Aleth supports EVMC out of the box, but geth not yet.
 
 1. Build geth with EVMC
 
 	Clone the [the ewasm geth fork](https://github.com/ewasm/go-ethereum):
 
-	Geth for ewasm testnet is released regularly by tagging the above fork with `ewasm-testnet-milestoneX`, where
+	Geth for Ewasm testnet is released regularly by tagging the above fork with `ewasm-testnet-milestoneX`, where
 	`X` stands for a milestone number.
 
 	(Latest: [`ewasm-testnet-milestone1`](https://github.com/ewasm/go-ethereum/tree/ewasm-testnet-milestone1))
@@ -177,11 +177,11 @@ Aleth supports EVMC out of the box, but geth not yet.
 
 	Note that the `/tmp/ewasm-node/4201` directory name above is arbitrary. It just needs to be unique.
 
-1. Run geth with hera and connect to the testnet:
+1. Run geth with Hera and connect to the testnet:
 
 	Use `--vm.ewasm` flag in `geth` to plug in an EVMC VM shared library. Point it to the Hera shared library that you built a moment ago. 
 	Additional EVMC options can be provided after a comma. 
-	Hera options are documented in [hera](https://github.com/ewasm/hera).
+	Hera options are documented [here](https://github.com/ewasm/hera).
 
 	Note also the `--etherbase`, `--networkid`, and `--bootnodes` commands, below, and copy them verbatim as these are required to connect to and sync with the Ewasm testnet.
 
@@ -241,7 +241,7 @@ This section describes how to run geth node with the [Wagon](http://github.com/g
 
 3. Run geth
 
-	The ewasm interpreter will be activated by default as long as you do not specify a `--vm.ewasm=...` on the command line option.
+	The Ewasm interpreter will be activated by default as long as you do not specify a `--vm.ewasm=...` on the command line option.
 
 	```sh
 	> ./geth \
@@ -282,7 +282,7 @@ You'll want to run this using `pm2` as well if you intend to keep it running lon
 
 ## Tests
 
-Learn how to create and run ewasm tests [here](https://github.com/ewasm/tests/blob/06e0c19e117b48adcc6dd07def286d65b7e63f41/src/GeneralStateTestsFiller/stEWASMTests/README.md).
+Learn how to create and run Ewasm tests [here](https://github.com/ewasm/tests/blob/06e0c19e117b48adcc6dd07def286d65b7e63f41/src/GeneralStateTestsFiller/stEWASMTests/README.md).
 
 ## Testnet Faucet
 
