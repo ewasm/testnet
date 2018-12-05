@@ -41,6 +41,6 @@
     "0000000000000000000000000000000000000008": { "precompiled": { "name": "alt_bn128_pairing_product", "startingBlock" : "0x2dc6c0" } },
     "000000000000000000000000000000000000000a": { "codeFromFile": "dummymetering.wasm", "balance": "0x01", "nonce": "0x00", "storage": {} },
     "000000000000000000000000000000000000000b": { "codeFromFile": "dummyevm2wasm.wasm", "balance": "0x01", "nonce": "0x00", "storage": {} },
-    "9fa4f23079bae7a7a5c392b67e18093310315bfc": { "balance": "0x200000000000000000000000000000000000000000000000000000000000000", "storage": {}, "nonce": "0x0", "code": "" }
+    "9fa4f23079bae7a7a5c392b67e18093310315bfc": { "balance": "100000000000000000000000000", "storage": {}, "nonce": "0x0", "code": "" }
   } 
 }
