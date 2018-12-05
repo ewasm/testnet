@@ -1,12 +1,6 @@
-# WebAssembly kickstart guide
+# Compiling C/C++ to WebAssembly
 
 ## Rolling your own compiler
-
-One of the premises of WebAssembly is to support compiling multiple languages to WebAssembly.
-
-### C/C++
-
-#### Building
 
 Clang has a WebAssembly target, though it is not easy to use currently. First, a custom build must be made.
 
@@ -37,7 +31,7 @@ cmake --build .
 cd ../..
 ```
 
-#### Using
+## Using this compiler
 
 Now everything is set to finally compile *Hello World*!
 
@@ -58,4 +52,3 @@ wasm-as -o hello.wasm hello.wast
 ```
 
 There you go, you have your very first WebAssembly binary.
-
