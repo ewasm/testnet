@@ -66,8 +66,8 @@ Next we can generate linear WASM output from the bitcode:
 
 `llc -asm-verbose=false -o main.s main.bc`
 
-The backend output is in linear WASM format so we must convert this to WAST with binaryen's `s2wasm` tool:
+The backend output is in linear assembly format, so we must convert this to WAST with binaryen's `s2wasm` tool:
 
 `s2wasm -o main.wast main.s`
 
-The code will now be in WAST format but must be cleaned up with `ewasm-cleanup` to be deployed as a contract.
+The code will now be in WAST format but must be cleaned up with [wasm-chisel](https://github.com/wasmx/wasm-chisel) to be deployed as a contract.
