@@ -12,7 +12,7 @@ services:
         user: root
         volumes:
         - ./data/geth-hera:/root/data
-        command: /root/geth --vm.ewasm="/root/libhera.so,metering=true,fallback=true" --syncmode="full" --etherbase a8c3eeb2915373139bcfc287d4ae9e660d734881 --rpc --rpcapi "web3,net,eth,debug" --rpcvhosts=* --rpcaddr "0.0.0.0" --rpccorsdomain "*" --mine --miner.threads 1 --networkid 66 
+        command: /root/geth --vm.ewasm="/root/libhera.so,metering=true,fallback=true" --syncmode="full" --etherbase a8c3eeb2915373139bcfc287d4ae9e660d734881 --rpc --rpcapi "web3,net,eth,debug" --rpcvhosts=* --rpcaddr "0.0.0.0" --rpccorsdomain "*" --mine --miner.threads 1 --networkid 66  --vmodule "miner=12" --datadir /root/data
         networks:
             ewasm:
                 ipv4_address: 172.28.0.2
