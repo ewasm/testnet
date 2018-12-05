@@ -19,15 +19,9 @@ cd ../projects
 git clone http://llvm.org/git/compiler-rt.git
 mkdir ../build
 cd ../build
-cmake -G Ninja -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD=WebAssembly -DLLVM_TARGETS_TO_BUILD= ..
-ninja
+cmake -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD=WebAssembly -DLLVM_TARGETS_TO_BUILD= ..
+cmake --build .
 cd ../..
-```
-
-Also possible to build using POSIX make:
-```
-cmake -G "Unix Makefiles" -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD=WebAssembly -DLLVM_TARGETS_TO_BUILD= ..
-make -j 4
 ```
 
 This will take anything from 1 to 5 hours.
@@ -38,8 +32,8 @@ git clone https://github.com/WebAssembly/binaryen.git
 cd binaryen
 mkdir build
 cd build
-cmake -G Ninja ..
-ninja
+cmake ..
+cmake --build .
 cd ../..
 ```
 
