@@ -11,7 +11,7 @@ One of the premises of WebAssembly is to support compiling multiple languages to
 Clang has a WebAssembly target, though it is not easy to use currently. First, a custom build must be made.
 
 To build `clang`:
-```
+```sh
 git clone http://llvm.org/git/llvm.git
 cd llvm/tools
 git clone http://llvm.org/git/clang.git
@@ -27,7 +27,7 @@ cd ../..
 This will take anything from 1 to 5 hours.
 
 To build `binaryen`:
-```
+```sh
 git clone https://github.com/WebAssembly/binaryen.git
 cd binaryen
 mkdir build
@@ -50,9 +50,9 @@ The compilation process has four steps:
 Note: the last step can also be accomplished with [wabt](https://github.com/webassembly/wabt) (previously called *sexpr-wasm-prototype*).
 
 Cheat sheet:
-```
-clang -emit-llvm --target=wasm32 -nostdlib -S hello.c
-llc -march=wasm32 -o hello.s hello.ll
+```sh
+clang -emit-llvm --target=wasm32-unknown-unknown-elf -nostdlib -S hello.c
+llc -o hello.s hello.ll
 s2wasm -o hello.wast hello.s
 wasm-as -o hello.wasm hello.wast
 ```
