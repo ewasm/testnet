@@ -83,10 +83,6 @@ module.exports = {
 
 Replace `PRIVATE_KEY` with the appropriate private key for the account you used to tap the faucet, above. After doing this, the usual truffle commands (such as `truffle migrate --network ewasm`) should work.
 
-### Rust
-
-Documentation for writing contracts using Rust is available [here](./rust.md).
-
 ### Other languages
 
 One of the [design goals](https://github.com/ewasm/design/blob/master/rationale.md) of the Ewasm project is to support smart contract development in a wide range of languages, using a range of tooling, including existing, mature toolchains such as LLVM (C/C++, Kotlin, Rust, and [many others](https://en.wikipedia.org/wiki/LLVM)) and JavaScript/TypeScript. In theory, any language that can be compiled to Wasm can be used to write a smart contract (as long as it implements the [contract interface](https://github.com/ewasm/design/blob/master/contract_interface.md) and [Ethereum interface](https://github.com/ewasm/design/blob/master/eth_interface.md)). See [awesome-wasm-langs](https://github.com/appcypher/awesome-wasm-langs) for a list of such languages.
@@ -94,6 +90,7 @@ One of the [design goals](https://github.com/ewasm/design/blob/master/rationale.
 At present, we've developed support for the following languages and toolchains:
 
 - [C/C++ (LLVM) WebAssembly tutorial](./clang.md)
+- [Rust](./rust.md)
 - [AssemblyScript](https://github.com/AssemblyScript/assemblyscript), a subset of TypeScript, which uses the JavaScript toolchain: see the [etherts org](https://github.com/etherts/docs) for more information on writing contracts in AssemblyScript.
 
 If you're interested in adding support for another language, framework, or toolset, see the Contributing section above and reach out.
