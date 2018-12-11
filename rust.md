@@ -26,7 +26,7 @@ Make sure you are installing the target `wasm32-unknown-unknown` and not `wasm32
 
 ## 2. Configuration and Build
 
-Now that the WebAssembly backend is installed, it can be used to compile almost any Rust project to a WASM binary.
+Now that the WebAssembly backend is installed, it can be used to compile almost any Rust project to a Wasm binary.
 However, Ewasm also specifies a set of imports and exports for contracts. These are roughly analogous to symbols in a native binary.
 
 In order to properly export and import said symbols, the project must be compiled as a "shared library".
@@ -58,7 +58,7 @@ Once this is done, `cargo build` will compile the project to WebAssembly by defa
 By default, the Rust compiler can generate huge WebAssembly binaries, even in release mode. 
 These are not suitable for use as Ewasm contracts, and include lots of unnecessary cruft.
 
-The following steps will show how to optimize for size and remove unnecessary code segments from the resulting WASM binary.
+The following steps will show how to optimize for size and remove unnecessary code segments from the resulting Wasm binary.
 
 #### Compiler optimizations
 
@@ -83,7 +83,7 @@ Using the `wasm-snip` tool, it is possible to replace the function bodies of suc
 ```console
 $ cargo install wasm-snip
 ```
-`wasm-snip` depends on the name section in the WASM binary being present. Therefore, we must build with `debug` enabled. Add the following to the `[profile.release]` section in `Cargo.toml`:
+`wasm-snip` depends on the name section in the Wasm binary being present. Therefore, we must build with `debug` enabled. Add the following to the `[profile.release]` section in `Cargo.toml`:
 ```toml
 debug = true
 ```
@@ -124,7 +124,7 @@ When writing code for a native platform, ending execution properly is usually ha
 
 Many constructs in Rust's standard library are not optimized for usage in Ewasm, or are outright unavailable due to dependence on a native syscall interface.
 
-Minimizing the use of non-primitive standard library constructs will improve the size, performance, and gas efficiency of resulting WASM binaries. Where possible, follow these rules of thumb:
+Minimizing the use of non-primitive standard library constructs will improve the size, performance, and gas efficiency of resulting Wasm binaries. Where possible, follow these rules of thumb:
 * Minimize the usage of the heap, in general. Don't use `Box<T>` or `Rc<T>`, or any other smart pointers.
 * Avoid using types with implicitly heap-allocated data. Use arrays instead of `Vec`, and `str` instead of `String`.
 * Borrowing is your friend. Stop using `clone()` and passing non-trivial structs by value, use lifetime parameters and references instead.
@@ -141,6 +141,6 @@ There is one final step that must be done before contract creation: post-process
 
 The Rust compiler, at the moment, does not have fine-grained control over the imports and exports generated other than by their identifiers in the source. As a result, unnecessary exports must be removed and malformed imports corrected.
 
-This can be done using an automated tool such as [wasm-chisel](https://github.com/wasmx/wasm-chisel), or by hand in the `.wast` file produced by disassembling the WASM binary.
+This can be done using an automated tool such as [wasm-chisel](https://github.com/wasmx/wasm-chisel), or by hand in the `.wast` file produced by disassembling the Wasm binary.
 
 If done by hand, the most common errors will be import names being prefixed with `ethereum_` and globals or tables being unnecessarily exported.
