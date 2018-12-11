@@ -29,7 +29,7 @@ Make sure you are installing the target `wasm32-unknown-unknown` and not `wasm32
 Now that the WebAssembly backend is installed, it can be used to compile almost any Rust project to a Wasm binary.
 However, Ewasm also specifies a set of imports and exports for contracts. These are roughly analogous to symbols in a native binary.
 
-In order to properly export and import said symbols, the project must be compiled as a "shared library".
+In order to properly export and import said symbols, the project must be compiled as a "shared library."
 While this has no meaning in WebAssembly (all binaries are modules), the flag ensures that the compiler will export and import the correct symbols.
 
 To do this, ensure that the project uses `lib.rs` as the crate root (not `main.rs`), and add the following lines to `Cargo.toml`:
@@ -56,7 +56,7 @@ Once this is done, `cargo build` will compile the project to WebAssembly by defa
 ### Optimizing Ewasm binaries
 
 By default, the Rust compiler can generate huge WebAssembly binaries, even in release mode. 
-These are not suitable for use as Ewasm contracts, and include lots of unnecessary cruft.
+These include lots of unnecessary cruft and are not suitable for use as Ewasm contracts.
 
 The following steps will show how to optimize for size and remove unnecessary code segments from the resulting Wasm binary.
 
@@ -67,7 +67,7 @@ The simplest way to slim down Rust-generated binaries is by enabling certain com
 * Enabling `lto`, or link-time optimizations, allows the compiler to prune or inline parts of the code at link-time.
 * Setting `opt-level` to `'s'` tells the compiler to optimize for binary size rather than speed. `opt-level = 'z'` will optimize more aggressively for size, although at the cost of performance.
 
-Enable these options in the `release` profile by adding the following to `Cargo.toml`.
+Enable these options in the `release` profile by adding the following to `Cargo.toml`:
 ```toml
 [profile.release]
 lto = true
@@ -94,7 +94,7 @@ $ wasm-snip --snip-rust-panicking-code --snip-rust-fmt-code input.wasm -o output
 
 ## 3. Writing Ewasm contracts
 
-The Ewasm specification, in addition to the normal constraints of the blockchain, makes writing code for Ewasm contracts a little different from writing plain Rust.
+In addition to the normal constraints of the blockchain, the Ewasm [specification](https://github.com/ewasm/design) makes writing code for Ewasm contracts a little different from writing plain Rust.
 
 The following is a list of rules and best practices for writing Ewasm contracts.
 
@@ -117,8 +117,8 @@ The `no_mangle` directive should be included as well, to ensure that the compile
 
 When writing code for a native platform, ending execution properly is usually handled behind the scenes. In Ewasm, there are two EEI functions that signal to end execution:
 
-* `finish` behaves like EVM's `return`. Simply put, it sets the output data and halts the VM.
-* `revert` is the exact same thing as EVM's `revert`. It halts the VM and refunds any gas.
+* [`finish`](https://github.com/ewasm/design/blob/master/eth_interface.md#finish) behaves like EVM's `return`. Simply put, it sets the output data and halts the VM.
+* [`revert`](https://github.com/ewasm/design/blob/master/eth_interface.md#revert) is the exact same thing as EVM's `revert`. It halts the VM and refunds any gas.
 
 ### Minimize the use of the standard library
 
