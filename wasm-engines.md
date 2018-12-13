@@ -1,0 +1,218 @@
+# Wasm Engines
+
+Binaryen and Wabt are two WebAssembly Engines which also provides a set of tools
+for compiling and decompiling wasm binary files. Both are official WebAssembly Projects.
+
+# Binaryen
+
+## Getting and compiling binaryen
+
+Install development tools (`build-essential`) `cmake` and `make`:
+
+```
+sudo apt-get install build-essential cmake make
+```
+
+Clone the official Binaryen repository:
+
+```
+git clone https://github.com/WebAssembly/binaryen.git
+```
+
+Move to the new `binaryen` directory and run this command to build the tools:
+
+```
+cmake . && make
+```
+
+Now you have the following binaryen tools compiled in the `bin/` directory:
+
+- *asm2wasm*: An asm.js to WebAssembly compiler.
+- *wasm2js*: A WebAssembly to Javascript compiler (experimental).
+- *wasm-as*: Assembles WebAssembly in text format (s-expression format) into binary format.
+- *wasm-ctor-eval*: A tool that can execute C++ global constructors ahead of time.
+- *wasm-dis*: Un-assembles WebAssembly in binary format into text format.
+- *wasm-emscripten-finalize*: Takes a wasm binary produced by llvm+lld and performs emscripten-specific passes over it.
+- *wasm.js*: Contains Binaryen components compiled to JavaScript, including the interpreter, `asm2wasm`, the S-Expression parser, etc.
+- *wasm-merge*: Combines wasm files into a single big wasm file.
+- *wasm-metadce*: Performs dead code elimination (DCE) on a larger space that the wasm module is just part of.
+- *wasm-opt*: Loads WebAssembly and runs Binaryen IR passes on it.
+- *wasm-reduce*: Reduce a wasm file to a smaller one that has the same behavior on a given command.
+- *wasm-shell*: A shell that can load and interpret WebAssembly code.
+
+## Using binaryen tools
+
+In this section we show how to use some of the binaryen tools:
+
+* `wasm-as`: This tools allows to compile WebAssembly Text Format (wast) to
+WebAssembly Binary Format (wasm).  Example: We have a file called
+`contract.wast` containing this wast code:
+
+```
+(module
+    (import "ethereum" "storageStore" (func $storageStore (param i32 i32)))
+    (import "ethereum" "getCodeSize"  (func $getCodeSize (result i32)))
+    (memory 1)
+    (export "main" (func $main))
+    (export "memory" (memory 0))
+    (func $main
+      (i32.store (i32.const 32) (call $getCodeSize))
+      (call $storageStore (i32.const 0) (i32.const 32))))
+```
+
+Running `./wasm-as contract.wast` will generate a `contract.wasm` file.
+
+* `wasm-dis`: You can take `contract.wasm` or any other `.wasm` file generated
+  by other compiler and convert it to WebAssembly Text format (`wast`).
+  Example: running `./wasm-dis contract.wasm -o new_contract.wast` will create
+  the following wast codee:
+  
+```
+(module
+ (type $0 (func (param i32 i32)))
+ (type $1 (func (result i32)))
+ (type $2 (func))
+ (import "ethereum" "storageStore" (func $fimport$0 (param i32 i32)))
+ (import "ethereum" "getCodeSize" (func $fimport$1 (result i32)))
+ (memory $0 1)
+ (export "main" (func $0))
+ (export "memory" (memory $0))
+ (func $0 (; 2 ;) (type $2)
+  (i32.store
+   (i32.const 32)
+   (call $fimport$1)
+  )
+  (call $fimport$0
+   (i32.const 0)
+   (i32.const 32)
+  )
+ )
+)
+```
+
+Note it is not _exactly_ the same code we wrote in the first place, it is more
+verbose as it was generated based on the wasm binary file.
+
+- `wasm-shell`: This tool allows you to execute wast files.
+
+Example: This WebAssembly program contains two functions, `main` and `sum`,
+`sum` receives two parameters `$a` and `b` and returns the sum of both
+parameters. `main` calls `sum` using `2` and `3` as parameter, then calls a
+`wasm-shell` provided function called `$print` to show the result.
+
+```
+(module
+  (import "spectest" "print" (func $print (param i32)))
+  (memory 1)
+  (export "main" (func $main))
+  (export "memory" (memory 0))
+  (func $main
+    (call $print (call $sum (i32.const 2) (i32.const 3))))
+  (func $sum (param $a i32) (param $b i32) (result i32)
+    (return (i32.add (get_local $a) (get_local $b)))))
+```
+
+You can execute this code by calling the command: `./wasm-shell --entry main
+mycode.wast`, and you will get the following result:
+
+```
+BUILDING MODULE [line: 1]
+(i32.const 5)
+```
+
+Note you can not execute ewasm contracts using `wasm-shell` because the
+`ethereum` namespace is not provided.
+
+# Wabt
+
+## Getting and compiling wabt
+
+Install development tools (`build-essential`) `cmake`, `make` and `clang`:
+
+```
+sudo apt-get install build-essential cmake make clang
+```
+
+Clone the wabt repository and its submodules:
+
+```
+git clone --recursive https://github.com/WebAssembly/wabt.git
+cd wabt
+```
+
+Execute `make`
+
+```
+make
+```
+
+After successfully executing this command, a new `bin` directory is creating
+containing the following wabt tools:
+
+- *spectest-interp*: 
+- *wat2wasm*: Translate from WebAssembly Text format (`wast`) to the WebAssembly Binary format (`wasm`).
+- *wasm2wat*: Translate from WebAssembly Binary format to WebAssembly Text format.
+- *wasm2c*: Convert a WebAssembly binary file to a C source and header.
+- *wasm-objdump*: Print information about a wasm binary.
+- *wasm-interp*: Decode and run a WebAssembly binary file using a stack-based interpreter.
+- *wat-desugar*: Parse .wast text form as supported by the spec interpreter and print "canonical" flat format.
+- *wasm-opcodecnt*: Read a file in the wasm binary format, and count opcode usage for instructions.
+- *wasm-strip*: Removes sections of a WebAssembly binary file.
+- *wasm-validate*: Read a file in the WebAssembly binary format and validate it.
+
+## Using Wabt tools
+
+* `wat2wasm`
+
+Consider this ewasm contract:
+
+```
+(module
+    (import "ethereum" "storageStore" (func $storageStore (param i32 i32)))
+    (import "ethereum" "getCodeSize"  (func $getCodeSize (result i32)))
+    (memory 1)
+    (export "main" (func $main))
+    (export "memory" (memory 0))
+    (func $main
+      (i32.store (i32.const 32) (call $getCodeSize))
+      (call $storageStore (i32.const 0) (i32.const 32))))
+```
+
+Running `./wat2wasm contract.wast` generates a new binary file called `contract.wasm`.
+
+* `wasm2wat`
+
+Using this tool we can decompile the wasm file back into text format:
+
+```
+./wasm2wat contract.wasm -o my_contract.wat
+```
+
+In this case we specify an output file `my_contract.wat` in order to not
+overwrite the original `wast` file.
+
+This is the content of the new generated wast code:
+
+```
+(module
+  (type (;0;) (func (param i32 i32)))
+  (type (;1;) (func (result i32)))
+  (type (;2;) (func))
+  (import "ethereum" "storageStore" (func (;0;) (type 0)))
+  (import "ethereum" "getCodeSize" (func (;1;) (type 1)))
+  (func (;2;) (type 2)
+    i32.const 32
+    call 1
+    i32.store
+    i32.const 0
+    i32.const 32
+    call 0)
+  (memory (;0;) 1)
+  (export "main" (func 2))
+  (export "memory" (memory 0)))
+```
+
+Note this is not exactly the same code we wrote as it was generated based on the
+wasm file.
+
+
