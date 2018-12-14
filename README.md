@@ -103,16 +103,9 @@ The testnet currently only supports the [go-ethereum](https://github.com/ethereu
 
 ### Geth
 
-You may install and configure geth in the following ways:
+Configuring geth requires installing prerequisites, downloading and compiling geth from source with [EVMC](https://github.com/ethereum/evmc) support, downloading and building [Hera](https://github.com/ewasm/hera/) (the Ewasm virtual machine connector), then launching geth with Hera set as its EVMC engine.
 
-- manually, from source
-- using this preconfigured Docker image
-
-#### Manual configuration
-
-Manually configuring geth requires installing prerequisites, downloading and compiling geth from source with [EVMC](https://github.com/ethereum/evmc) support, downloading and building [Hera](https://github.com/ewasm/hera/) (the Ewasm virtual machine connector), then launching geth with Hera set as its EVMC engine.
-
-1. Make sure the prerequisites are installed (Go version 1.7 or later, `cmake` 3.5 or later, and a C/C++ compiler).
+Make sure the prerequisites are installed (Go version 1.7 or later, `cmake` 3.5 or later, and a C/C++ compiler).
 
 	On CentOS-flavored Linux (e.g., Amazon Linux) you can use the following commands:
 
