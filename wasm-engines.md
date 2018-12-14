@@ -27,18 +27,18 @@ cmake . && make
 
 Now you have the following binaryen tools compiled in the `bin/` directory:
 
-- *asm2wasm*: An asm.js to WebAssembly compiler.
-- *wasm2js*: A WebAssembly to Javascript compiler (experimental).
-- *wasm-as*: Assembles WebAssembly in text format (s-expression format) into binary format.
-- *wasm-ctor-eval*: A tool that can execute C++ global constructors ahead of time.
-- *wasm-dis*: Un-assembles WebAssembly in binary format into text format.
-- *wasm-emscripten-finalize*: Takes a wasm binary produced by llvm+lld and performs emscripten-specific passes over it.
-- *wasm.js*: Contains Binaryen components compiled to JavaScript, including the interpreter, `asm2wasm`, the S-Expression parser, etc.
-- *wasm-merge*: Combines wasm files into a single big wasm file.
-- *wasm-metadce*: Performs dead code elimination (DCE) on a larger space that the wasm module is just part of.
-- *wasm-opt*: Loads WebAssembly and runs Binaryen IR passes on it.
-- *wasm-reduce*: Reduce a wasm file to a smaller one that has the same behavior on a given command.
-- *wasm-shell*: A shell that can load and interpret WebAssembly code.
+- **asm2wasm**: An asm.js to WebAssembly compiler.
+- **wasm2js**: A WebAssembly to Javascript compiler (experimental).
+- **wasm-as**: Assembles WebAssembly in text format (s-expression format) into binary format.
+- **wasm-ctor-eval**: A tool that can execute C++ global constructors ahead of time.
+- **wasm-dis**: Un-assembles WebAssembly in binary format into text format.
+- **wasm-emscripten-finalize**: Takes a wasm binary produced by llvm+lld and performs emscripten-specific passes over it.
+- **wasm.js**: Contains Binaryen components compiled to JavaScript, including the interpreter, `asm2wasm`, the S-Expression parser, etc.
+- **wasm-merge**: Combines wasm files into a single big wasm file.
+- **wasm-metadce**: Performs dead code elimination (DCE) on a larger space that the wasm module is just part of.
+- **wasm-opt**: Loads WebAssembly and runs Binaryen IR passes on it.
+- **wasm-reduce**: Reduce a wasm file to a smaller one that has the same behavior on a given command.
+- **wasm-shell**: A shell that can load and interpret WebAssembly code.
 
 ## Using binaryen tools
 
@@ -156,16 +156,16 @@ make
 After successfully executing this command, a new `bin` directory is creating
 containing the following wabt tools:
 
-- *spectest-interp*: 
-- *wat2wasm*: Translate from WebAssembly Text format (`wast`) to the WebAssembly Binary format (`wasm`).
-- *wasm2wat*: Translate from WebAssembly Binary format to WebAssembly Text format.
-- *wasm2c*: Convert a WebAssembly binary file to a C source and header.
-- *wasm-objdump*: Print information about a wasm binary.
-- *wasm-interp*: Decode and run a WebAssembly binary file using a stack-based interpreter.
-- *wat-desugar*: Parse .wast text form as supported by the spec interpreter and print "canonical" flat format.
-- *wasm-opcodecnt*: Read a file in the wasm binary format, and count opcode usage for instructions.
-- *wasm-strip*: Removes sections of a WebAssembly binary file.
-- *wasm-validate*: Read a file in the WebAssembly binary format and validate it.
+- **wat2wasm**: Translate from WebAssembly Text format (`wast`) to the WebAssembly Binary format (`wasm`).
+- **wasm2wat**: Translate from WebAssembly Binary format to WebAssembly Text format.
+- **wasm2c**: Convert a WebAssembly binary file to a C source and header.
+- **wasm-objdump**: Print information about a wasm binary.
+- **wasm-interp**: Decode and run a WebAssembly binary file using a stack-based interpreter.
+- **wat-desugar**: Parse .wast text form as supported by the spec interpreter and print "canonical" flat format.
+- **wasm-opcodecnt**: Read a file in the wasm binary format, and count opcode usage for instructions.
+- **wasm-strip**: Removes sections of a WebAssembly binary file.
+- **wasm-validate**: Read a file in the WebAssembly binary format and validate it.
+- **spectest-interp**: Read a Spectest JSON file, and run its tests in the interpreter.
 
 ## Using Wabt tools
 
@@ -219,7 +219,6 @@ This is the content of the new generated wast code:
   (export "memory" (memory 0)))
 ```
 
-Note this is not exactly the same code we wrote as it was generated based on the
+Note this is not _exactly_ the same code we wrote as it was generated based on the
 wasm file.
-
 
