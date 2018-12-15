@@ -54,7 +54,7 @@ You don't need any special infrastructure to transact on the Ewasm testnet. You 
 
 Voila! You're now ready to transact on the testnet.
 
-## Writing and compiling smart contracts
+## Writing, compiling, and deploying smart contracts
 
 ### Solidity/EVM
 
@@ -95,22 +95,15 @@ At present, we've developed support for the following languages and toolchains:
 
 If you're interested in adding support for another language, framework, or toolset, see the Contributing section above and reach out.
 
+### Deploying contracts to the testnet
+
+Ewasm contracts can be deployed using [ewasm studio](http://ewasm.ethereum.org/studio/), which requires the contract code in WebAssembly Text Format. If you want to deploy a Wasm binary, [this guide](./wasm-engines.md) explains how to use Binaryen or Wabt to disassemble WebAssembly Binary Format (`wasm`) into WebAssembly Text Format (`wast`).
+
+Once the contract is in `wast` format you can deploy it using ewasm studio: the field `Destination Address` should be blank, set any value in the `Value (Wei)` field, and paste the `wast` code in the `Contract Code (WAST)` field. Then hit "SUBMIT TRANSACTION" to deploy.
+
 ## Running a testnet node locally
 
 The testnet currently only supports the [go-ethereum](https://github.com/ethereum/go-ethereum) (geth) client. Support for aleth (formerly, cpp-ethereum) is a work in progress and more information may be found [here](aleth.md).
-
-### Deploying contracts to the testnet
-
-Ewasm contracts can be deployed using [ewasm
-studio](http://ewasm.ethereum.org/studio/), ewasm studio requires the contract
-code in WebAssembly Text Format, [this guide](./wasm-engines.md) explains how to
-use Binaryen or Wabt to disassemble WebAssembly Binary Format (`wasm`) into
-WebAssembly Text Format (`wast`).
-
-Once the contract is in `wast` format you can deploy it using ewasm studio, in
-order to do that the fiel `Destination Address` has to be blank, set any
-value in the `Value (Wei)` field and paste the `wast` code in the `Contract Code
-(WAST)` field.
 
 ## Adding a node to the testnet
 
