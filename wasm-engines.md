@@ -1,14 +1,17 @@
 # Wasm Engines
 
-Binaryen and Wabt are two official WebAssembly Projects providing a set of tool
-to interact with WebAssembly.
+[Binaryen](https://github.com/WebAssembly/binaryen.git) and
+[Wabt](https://github.com/WebAssembly/wabt.git) are two [official WebAssembly
+Projects](https://github.com/WebAssembly/) providing a set of tools to interact
+with WebAssembly.
 
 Wabt's focus is on the manipulation of WebAssembly binary files (`wasm`) and
 text format (`wast`) and conversion between the two formats. Binaryen provides a
 compiler and toolchain infrastructure library for WebAssembly. It aims to make
-compiling to WebAssembly ewasy, provides a C API, internal IR, and optimizer, as
-Wabt, Binaryen also provides a set of tools to interact with WebAssembly binary
-files and WebAssembly in Text Format.
+compiling to WebAssembly easy, provides a C API, internal IR, and optimizer.
+Similar to Wabt, Binaryen also provides a set of tools to interact with
+WebAssembly binary files and WebAssembly in Text Format. The rest of this
+document explains how to use these tools to work with Ewasm contracts.
 
 Currently [Hera](https://github.com/ewasm/hera) provides support for both
 WebAssembly Engines, being Binaryen the one with complete support and provided
@@ -20,10 +23,6 @@ by default in Hera.
 
 Make sure development tools are already installed (cmake, make, C++ compiler),
 instructions can be found [here](./README.md#manual-configuration).
-
-```
-sudo apt-get install build-essential cmake make
-```
 
 Clone the official Binaryen repository:
 
