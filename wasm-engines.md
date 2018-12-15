@@ -1,13 +1,25 @@
 # Wasm Engines
 
-Binaryen and Wabt are two WebAssembly Engines which also provides a set of tools
-for compiling and decompiling wasm binary files. Both are official WebAssembly Projects.
+Binaryen and Wabt are two official WebAssembly Projects providing a set of tool
+to interact with WebAssembly.
+
+Wabt's focus is on the manipulation of WebAssembly binary files (`wasm`) and
+text format (`wast`) and conversion between the two formats. Binaryen provides a
+compiler and toolchain infrastructure library for WebAssembly. It aims to make
+compiling to WebAssembly ewasy, provides a C API, internal IR, and optimizer, as
+Wabt, Binaryen also provides a set of tools to interact with WebAssembly binary
+files and WebAssembly in Text Format.
+
+Currently [Hera](https://github.com/ewasm/hera) provides support for both
+WebAssembly Engines, being Binaryen the one with complete support and provided
+by default in Hera.
 
 # Binaryen
 
 ## Getting and compiling binaryen
 
-Install development tools (`build-essential`) `cmake` and `make`:
+Make sure development tools are already installed (cmake, make, C++ compiler),
+instructions can be found [here](./README.md#manual-configuration).
 
 ```
 sudo apt-get install build-essential cmake make
@@ -25,20 +37,11 @@ Move to the new `binaryen` directory and run this command to build the tools:
 cmake . && make
 ```
 
-Now you have the following binaryen tools compiled in the `bin/` directory:
+Now you have the following binaryen tools compiled in the `bin/` directory, A
+description of each tool can be found
+[here](https://github.com/WebAssembly/binaryen#tools).
 
-- **asm2wasm**: An asm.js to WebAssembly compiler.
-- **wasm2js**: A WebAssembly to Javascript compiler (experimental).
-- **wasm-as**: Assembles WebAssembly in text format (s-expression format) into binary format.
-- **wasm-ctor-eval**: A tool that can execute C++ global constructors ahead of time.
-- **wasm-dis**: Un-assembles WebAssembly in binary format into text format.
-- **wasm-emscripten-finalize**: Takes a wasm binary produced by llvm+lld and performs emscripten-specific passes over it.
-- **wasm.js**: Contains Binaryen components compiled to JavaScript, including the interpreter, `asm2wasm`, the S-Expression parser, etc.
-- **wasm-merge**: Combines wasm files into a single big wasm file.
-- **wasm-metadce**: Performs dead code elimination (DCE) on a larger space that the wasm module is just part of.
-- **wasm-opt**: Loads WebAssembly and runs Binaryen IR passes on it.
-- **wasm-reduce**: Reduce a wasm file to a smaller one that has the same behavior on a given command.
-- **wasm-shell**: A shell that can load and interpret WebAssembly code.
+More information on how to build binaryen can be found in the [original repository](https://github.com/WebAssembly/binaryen#building).
 
 ## Using binaryen tools
 
@@ -133,12 +136,6 @@ Note that you cannot currently execute ewasm contracts using `wasm-shell` becaus
 
 ## Getting and compiling wabt
 
-Install development tools (`build-essential`) `cmake`, `make` and `clang`:
-
-```
-sudo apt-get install build-essential cmake make clang
-```
-
 Clone the wabt repository and its submodules:
 
 ```
@@ -153,18 +150,7 @@ make
 ```
 
 After successfully executing this command, a new `bin` directory is created
-containing the following wabt tools:
-
-- **wat2wasm**: Translate from WebAssembly Text format (`wast`) to the WebAssembly Binary format (`wasm`).
-- **wasm2wat**: Translate from WebAssembly Binary format to WebAssembly Text format.
-- **wasm2c**: Convert a WebAssembly binary file to a C source and header.
-- **wasm-objdump**: Print information about a wasm binary.
-- **wasm-interp**: Decode and run a WebAssembly binary file using a stack-based interpreter.
-- **wat-desugar**: Parse .wast text form as supported by the spec interpreter and print "canonical" flat format.
-- **wasm-opcodecnt**: Read a file in the wasm binary format, and count opcode usage for instructions.
-- **wasm-strip**: Removes sections of a WebAssembly binary file.
-- **wasm-validate**: Read a file in the WebAssembly binary format and validate it.
-- **spectest-interp**: Read a Spectest JSON file, and run its tests in the interpreter.
+containing the wabt tools. A description of the wabt tools can be found [here](https://github.com/WebAssembly/wabt#wabt-the-webassembly-binary-toolkit).
 
 ## Using Wabt tools
 

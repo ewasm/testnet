@@ -99,6 +99,19 @@ If you're interested in adding support for another language, framework, or tools
 
 The testnet currently only supports the [go-ethereum](https://github.com/ethereum/go-ethereum) (geth) client. Support for aleth (formerly, cpp-ethereum) is a work in progress and more information may be found [here](aleth.md).
 
+### Deploying contracts to the testnet
+
+Ewasm contracts can be deployed using [ewasm
+studio](http://ewasm.ethereum.org/studio/), ewasm studio requires the contract
+code in WebAssembly Text Format, [this guide](./wasm-engines.md) explains how to
+use Binaryen or Wabt to disassemble WebAssembly Binary Format (`wasm`) into
+WebAssembly Text Format (`wast`).
+
+Once the contract is in `wast` format you can deploy it using ewasm studio, in
+order to do that the fiel `Destination Address` has to be blank, set any
+value in the `Value (Wei)` field and paste the `wast` code in the `Contract Code
+(WAST)` field.
+
 ## Adding a node to the testnet
 
 ### Geth
