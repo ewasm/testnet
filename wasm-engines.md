@@ -13,9 +13,9 @@ Similar to Wabt, Binaryen also provides a set of tools to interact with
 WebAssembly binary files and WebAssembly in Text Format. The rest of this
 document explains how to use these tools to work with Ewasm contracts.
 
-Currently [Hera](https://github.com/ewasm/hera) provides support for both
-WebAssembly Engines, being Binaryen the one with complete support and provided
-by default in Hera.
+By default, [Hera](https://github.com/ewasm/hera) ships with binaryen support,
+but it can also be compiled with wabt support. See
+[build options](https://github.com/ewasm/hera#build-options) for more information.
 
 # Binaryen
 
