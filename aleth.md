@@ -1,7 +1,5 @@
 # Aleth (formerly cpp-ethereum)
 
-**NOTE: this client currently is not supported fully and the instructions here may be wrong.**
-
 `aleth`, `alethvm` and `testeth` contain options to run them with [Hera ewasm VM](https://github.com/ewasm/hera):
 
 - `--vm hera` enables Hera only,
@@ -29,7 +27,8 @@ The shared library file is located under the `src` directory.
 ```sh
 > aleth \
 --vm /path/to/libhera.so \
---evmc fallback=true \
+--evmc metering=true
+--evmc evm1mode=fallback \
 -d /tmp/ewasm-node/4201 \
 --listen 4201 \
 --no-bootstrap \
@@ -37,7 +36,7 @@ The shared library file is located under the `src` directory.
 -t 1 \
 -a 0x031159dF845ADe415202e6DA299223cb640B9DB0 \
 --config ewasm-testnet-aleth-config.json \
---peerset "required:61e5475e6870260af84bcf61c02b2127a5c84560401452ae9c99b9ff4f0f343d65c9e26209ec32d42028b365addba27824669eb70c73f69568964f77433afbbe@127.0.0.1:1234"
+--peerset "required:enode://53458e6bf0353f3378e115034cf6c6039b9faed52548da9030b37b4672de4a8fd09f869c48d16f9f10937e7398ae0dbe8b9d271408da7a0cf47f42a09e662827@23.101.78.254:30303"
 --log-verbosity 4
 ```
 

@@ -259,8 +259,6 @@ This section describes how to run geth node with the [Wagon](http://github.com/g
 
 ### Aleth (cpp-ethereum) + Hera
 
-**NOTE: this client currently is not supported fully and the instructions here may be wrong.**
-
 Support for aleth (formerly, cpp-ethereum) is a work in progress and more information may be found [here](aleth.md).
 
 
