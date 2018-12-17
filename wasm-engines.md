@@ -17,6 +17,12 @@ By default, [Hera](https://github.com/ewasm/hera) ships with binaryen support,
 but it can also be compiled with wabt support. See
 [build options](https://github.com/ewasm/hera#build-options) for more information.
 
+Binaryen and Wabt's WebAssembly Text Format are not fully compatible with each
+other, if you decompile a `wasm` contract using `wasm-dis` (Binaryen) you may
+not be able to compile the resulting `wast` back to `wasm` using `wat2wasm`
+(Wabt). For compatibility purposes, the same wasm engine used by Hera should be
+used to generate the `wasm` or `wast` files.
+
 # Binaryen
 
 ## Getting and compiling binaryen
