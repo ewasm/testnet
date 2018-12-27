@@ -4,13 +4,13 @@ Many high level languages already support compilation to WebAssembly
 through the experimental LLVM backend. Unfortunately, it is a tedious
 and poorly documented process. This document aims to alleviate some
 of this tedium with a step-by-step tutorial to compile some basic C
-code to WAST format using LLVM, as well as provide instructions for building
+code to wast format using LLVM, as well as provide instructions for building
 the toolchain.
 
 ## Dependencies
 
 - LLVM + Clang: Must be built with the experimental WebAssebmly backend enabled
-- Binaryen: Needed to convert the `.s` output of LLVM's backend to WAST
+- Binaryen: Needed to convert the `.s` output of LLVM's backend to wast
 
 Instructions for installing these necessary components follow.
 
@@ -65,12 +65,12 @@ First we must compile C to LLVM bitcode through the Clang frontend:
 
 `clang -emit-llvm --target=wasm32-unknown-unknown-elf -c -o source.bc source.c`
 
-Next we can generate [linear WASM output](https://github.com/WebAssembly/design/blob/master/TextFormat.md#linear-instructions) from the bitcode:
+Next we can generate [linear Wasm output](https://github.com/WebAssembly/design/blob/master/TextFormat.md#linear-instructions) from the bitcode:
 
 `llc -asm-verbose=false -o main.s main.bc`
 
-The backend output is in linear assembly format, so we must convert this to WAST with binaryen's `s2wasm` tool:
+The backend output is in linear assembly format, so we must convert this to wast with binaryen's `s2wasm` tool:
 
 `s2wasm -o main.wast main.s`
 
-The code will now be in WAST format but must be cleaned up with [wasm-chisel](https://github.com/wasmx/wasm-chisel) to be deployed as a contract.
+The code will now be in wast format but must be cleaned up with [wasm-chisel](https://github.com/wasmx/wasm-chisel) to be deployed as a contract.
