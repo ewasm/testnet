@@ -8,17 +8,19 @@ with WebAssembly.
 Wabt's focus is on the manipulation of WebAssembly binary files (`wasm`) and
 text format (`wast`) and conversion between the two formats. Binaryen provides a
 compiler and toolchain infrastructure library for WebAssembly. It aims to make
-compiling to WebAssembly easy, provides a C API, internal IR, and optimizer.
-Similar to Wabt, Binaryen also provides a set of tools to interact with
-WebAssembly binary files and WebAssembly in Text Format. The rest of this
-document explains how to use these tools to work with Ewasm contracts.
+compiling to WebAssembly easy and provides a C API, internal IR, and optimizer.
+Similar to Wabt, binaryen also provides a set of tools to interact with
+WebAssembly binary files and WebAssembly in
+[text format](https://github.com/WebAssembly/design/blob/master/TextFormat.md).
+The rest of this document explains how to use these tools to work with Ewasm
+contracts.
 
 By default, [Hera](https://github.com/ewasm/hera) ships with binaryen support,
 but it can also be compiled with wabt support. See
 [build options](https://github.com/ewasm/hera#build-options) for more information.
 
-Binaryen and Wabt's WebAssembly Text Format are not fully compatible with each
-other, if you decompile a `wasm` contract using `wasm-dis` (Binaryen) you may
+Binaryen's and Wabt's WebAssembly text formats are not fully compatible with each
+other, so if you decompile a `wasm` contract using `wasm-dis` (binaryen) you may
 not be able to compile the resulting `wast` back to `wasm` using `wat2wasm`
 (Wabt). For compatibility purposes, the same wasm engine used by Hera should be
 used to generate the `wasm` or `wast` files.
@@ -27,10 +29,10 @@ used to generate the `wasm` or `wast` files.
 
 ## Getting and compiling binaryen
 
-Make sure development tools are already installed (cmake, make, C++ compiler),
-instructions can be found [here](./README.md#manual-configuration).
+Make sure development tools are already installed (cmake, make, C++ compiler).
+Instructions can be found [here](./README.md#manual-configuration).
 
-Clone the official Binaryen repository:
+Clone the official binaryen repository:
 
 ```
 git clone https://github.com/WebAssembly/binaryen.git
@@ -42,11 +44,11 @@ Move to the new `binaryen` directory and run this command to build the tools:
 cmake . && make
 ```
 
-Now you have the following binaryen tools compiled in the `bin/` directory, A
+Now you have the following binaryen tools compiled in the `bin/` directory. A
 description of each tool can be found
 [here](https://github.com/WebAssembly/binaryen#tools).
 
-More information on how to build binaryen can be found in the [original repository](https://github.com/WebAssembly/binaryen#building).
+More information on how to build binaryen can be found in the [master repository](https://github.com/WebAssembly/binaryen#building).
 
 ## Using binaryen tools
 
@@ -110,7 +112,7 @@ verbose and the variable names have changed as it was generated based on the was
 This tool allows you to execute wast files.
 
 Example: This WebAssembly program contains two functions, `main` and `sum`.
-`sum` receives two parameters `$a` and `b` and returns the sum of both
+`sum` receives two parameters `$a` and `$b` and returns the sum of both
 parameters. `main` calls `sum` using `2` and `3` as parameters, then calls a
 `wasm-shell` provided function called `$print` to show the result.
 
