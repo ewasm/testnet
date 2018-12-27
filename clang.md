@@ -65,7 +65,7 @@ First we must compile C to LLVM bitcode through the Clang frontend:
 
 `clang -emit-llvm --target=wasm32-unknown-unknown-elf -c -o source.bc source.c`
 
-Next we can generate linear WASM output from the bitcode:
+Next we can generate [linear WASM output](https://github.com/WebAssembly/design/blob/master/TextFormat.md#linear-instructions) from the bitcode:
 
 `llc -asm-verbose=false -o main.s main.bc`
 
