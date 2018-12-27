@@ -12,6 +12,8 @@ the toolchain.
 - LLVM + Clang: Must be built with the experimental WebAssebmly backend enabled
 - Binaryen: Needed to convert the `.s` output of LLVM's backend to WAST
 
+Instructions for installing these necessary components follow.
+
 ## Install LLVM and Clang with the WebAssembly backend
 
 ### From the repo
@@ -24,6 +26,7 @@ cd llvm/tools
 git clone http://llvm.org/git/clang.git
 cd ../projects
 git clone http://llvm.org/git/compiler-rt.git
+```
 
 Then initialize CMake:
 
@@ -33,13 +36,13 @@ cd ../build
 cmake -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD=WebAssembly -DLLVM_TARGETS_TO_BUILD= ..
 ```
 
-Lastly, call `make` as usual:
+Lastly, call `cmake` as usual:
 
 ```sh
 cmake --build .
 ```
 
-At the end of the (long) build the binaries will be in `bin`. Feel free to add that to your `PATH` for ease of use.
+At the end of the build process the binaries will be in `bin`. Feel free to add that to your `PATH` for ease of use.
 
 ## Install Binaryen
 
