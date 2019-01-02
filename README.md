@@ -131,7 +131,7 @@ Manually configuring geth requires installing prerequisites, downloading and com
 
 ## geth + Hera
 
-The genesis is in [ewasm-testnet-geth-config.json](ewasm-testnet-geth-config.json)
+The genesis is in [ewasm-testnet-geth-config.json](https://raw.githubusercontent.com/ewasm/testnet/ewasm-testnet-milestone1/ewasm-testnet-geth-config.json)
 
 This section describes how to run geth node with the Hera backend.
 
@@ -168,7 +168,7 @@ Aleth supports EVMC out of the box, but geth not yet.
 	> cmake --build .
 	```
 
-1. Download the [genesis file](ewasm-testnet-geth-config.json) and use it to initialize geth:
+1. Download the [genesis file](https://raw.githubusercontent.com/ewasm/testnet/ewasm-testnet-milestone1/ewasm-testnet-geth-config.json) and use it to initialize geth:
 
 	```sh
 	> wget https://raw.githubusercontent.com/ewasm/testnet/ewasm-testnet-milestone1/ewasm-testnet-geth-config.json
@@ -176,6 +176,13 @@ Aleth supports EVMC out of the box, but geth not yet.
 	```
 
 	Note that the `/tmp/ewasm-node/4201` directory name above is arbitrary. It just needs to be unique.
+
+1. Create a static peers file `{data-directory}/static-nodes.json`
+	```sh
+	[
+		"enode://53458e6bf0353f3378e115034cf6c6039b9faed52548da9030b37b4672de4a8fd09f869c48d16f9f10937e7398ae0dbe8b9d271408da7a0cf47f42a09e662827@23.101.78.254:30303"
+	]
+	```
 
 1. Run geth with Hera and connect to the testnet:
 
@@ -239,7 +246,14 @@ This section describes how to run geth node with the [Wagon](http://github.com/g
 	> go build ./cmd/geth/...
 	```
 
-3. Run geth
+3. Create a static peers file `{data-directory}/static-nodes.json`
+	```sh
+	[
+		"enode://53458e6bf0353f3378e115034cf6c6039b9faed52548da9030b37b4672de4a8fd09f869c48d16f9f10937e7398ae0dbe8b9d271408da7a0cf47f42a09e662827@23.101.78.254:30303"
+	]
+	```
+
+4. Run geth
 
 	The Ewasm interpreter will be activated by default as long as you do not specify a `--vm.ewasm=...` on the command line option.
 
