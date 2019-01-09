@@ -78,9 +78,22 @@ while [ "$1" != "" ]; do
 	shift
 done
 
-( git clone $STUDIO_REPO -b $STUDIO_BRANCH && cd ewasm-studio && docker build -t ewasm/ewasm-studio . )
-( git clone https://github.com/ewasm/etherchain-light -b $ETHERCHAIN_BRANCH && cd etherchain-light && docker build -t ewasm/etherchain-light . )
-( git clone $HERA_REPO --recursive -b $HERA_BRANCH && cd hera && mkdir build && cmake -DBUILD_SHARED_LIBS=ON && make -j4 && cp src/libhera.so ../.. )
-( git clone $GETH_REPO -b $GETH_BRANCH && cd go-ethereum && make && cp build/bin/geth .. )
+# ( git clone $STUDIO_REPO -b $STUDIO_BRANCH && cd ewasm-studio && docker build -t ewasm/ewasm-studio . )
+( git clone https://github.com/ewasm/etherchain-light -b $ETHERCHAIN_BRANCH && \
+	cd etherchain-light && \
+	docker build -t ewasm/etherchain-light . )
+
+( git clone $HERA_REPO --recursive -b $HERA_BRANCH && \
+	cd hera && \
+	mkdir build && \
+	cd build && \
+	cmake -DBUILD_SHARED_LIBS=ON .. && \
+	make -j4 && \
+	cp src/libhera.so ../.. )
+
+( git clone $GETH_REPO -b $GETH_BRANCH \
+	&& cd go-ethereum \
+	&& make && cp build/bin/geth .. )
+
 docker build -t ewasm/go-ethereum .
 ./init-geth.sh
