@@ -20,6 +20,8 @@ services:
         container_name: etherchain_light
         image: ewasm/etherchain-light
         command: npm start -- --rpc=http://172.28.0.2:8545
+        environment:
+            PORT: 80
         depends_on:
         - "geth_hera"
         networks:

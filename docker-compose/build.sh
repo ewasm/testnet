@@ -95,5 +95,5 @@ done
 	&& cd go-ethereum \
 	&& make && cp build/bin/geth .. )
 
-docker build -t ewasm/go-ethereum .
+docker build -t ewasm/geth-hera .
 ./init-geth.sh
